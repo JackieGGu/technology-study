@@ -10,6 +10,7 @@
   <name>technology-study</name>
 
   <modules>
+    <module>algorithm-study</module>
     <module>java8-study</module>
     <module>jvm-study</module>
   </modules>
