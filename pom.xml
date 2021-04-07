@@ -11,6 +11,7 @@
 
   <modules>
     <module>java8-study</module>
+    <module>jvm-study</module>
   </modules>
 
   <properties>
@@ -18,11 +19,16 @@
     <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <mysql.version>8.0.21</mysql.version>
   </properties>
 
   <dependencyManagement>
     <dependencies>
-
+      <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>${mysql.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
