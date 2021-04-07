@@ -1,6 +1,6 @@
 package cn.jackiegu.algorithm.study.sort;
 
-import cn.jackiegu.algorithm.study.common.Utils;
+import cn.jackiegu.technology.common.util.ArrayUtil;
 
 import java.util.Arrays;
 
@@ -14,7 +14,7 @@ public class DataChecker {
     public static void main(String[] args) {
         boolean result = true;
         for (int i = 0; i < TIME; i++) {
-            int[] source = Utils.getRandomArray(1000, 1000);
+            int[] source = ArrayUtil.getRandomArray(1000, 1000);
             int[] arr = source.clone();
             Arrays.sort(source);
 

@@ -21,6 +21,11 @@
 
   <dependencies>
     <dependency>
+      <groupId>cn.jackiegu</groupId>
+      <artifactId>technology-common</artifactId>
+    </dependency>
+
+    <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
     </dependency>

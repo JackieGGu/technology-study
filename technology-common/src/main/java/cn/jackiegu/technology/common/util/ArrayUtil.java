@@ -1,15 +1,15 @@
-package cn.jackiegu.algorithm.study.common;
+package cn.jackiegu.technology.common.util;
 
 import java.security.SecureRandom;
 import java.util.Random;
 
 /**
- * 通用工具类
+ * 数组工具类
  *
  * @author JackieGu
- * @date 2021/3/30
+ * @date 2021/4/7
  */
-public class Utils {
+public class ArrayUtil {
 
     /**
      * 生成随机数组
@@ -37,12 +37,5 @@ public class Utils {
         int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
-    }
-
-    /**
-     * 日志打印
-     */
-    public static void logger(String str) {
-        System.out.println("\033[94m" + str + "\033[0m");
     }
 }

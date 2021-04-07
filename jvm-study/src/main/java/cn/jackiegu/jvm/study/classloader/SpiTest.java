@@ -1,6 +1,6 @@
 package cn.jackiegu.jvm.study.classloader;
 
-import cn.jackiegu.jvm.study.common.Utils;
+import cn.jackiegu.technology.common.util.LoggerUtil;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -27,7 +27,7 @@ public class SpiTest {
          * 4. 在Driver的实现类的静态块代码中调用DriverManager.registerDriver()方法进行反向注册
          */
         Connection connection = DriverManager.getConnection(url, username, password);
-        Utils.logger("Connection类加载器与实例");
+        LoggerUtil.info("Connection类加载器与实例");
         System.out.println(connection.getClass().getClassLoader());
         System.out.println(connection);
     }

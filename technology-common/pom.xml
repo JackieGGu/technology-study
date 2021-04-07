@@ -8,7 +8,7 @@
     <artifactId>technology-study</artifactId>
     <version>1.0.0-snapshot</version>
   </parent>
-  <artifactId>algorithm-study</artifactId>
+  <artifactId>technology-common</artifactId>
   <version>${parent.version}</version>
   <packaging>jar</packaging>
 
@@ -20,14 +20,11 @@
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>cn.jackiegu</groupId>
-      <artifactId>technology-common</artifactId>
-    </dependency>
+
   </dependencies>
 
   <build>
-    <finalName>algorithm-study</finalName>
+    <finalName>technology-common</finalName>
   </build>
 
 </project>

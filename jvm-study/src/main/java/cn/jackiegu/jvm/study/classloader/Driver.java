@@ -1,6 +1,6 @@
 package cn.jackiegu.jvm.study.classloader;
 
-import cn.jackiegu.jvm.study.common.Utils;
+import cn.jackiegu.technology.common.util.LoggerUtil;
 
 import java.sql.Connection;
 import java.sql.DriverPropertyInfo;
@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class Driver implements java.sql.Driver {
 
     static {
-        Utils.logger("Custom Driver");
+        LoggerUtil.info("Custom Driver");
         System.out.println(Driver.class.getClassLoader());
     }
 

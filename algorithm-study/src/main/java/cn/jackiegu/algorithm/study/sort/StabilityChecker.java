@@ -1,6 +1,6 @@
 package cn.jackiegu.algorithm.study.sort;
 
-import cn.jackiegu.algorithm.study.common.Utils;
+import cn.jackiegu.technology.common.util.ArrayUtil;
 
 /**
  * 稳定性测试器
@@ -12,7 +12,7 @@ public class StabilityChecker {
     public static void main(String[] args) {
         boolean result = true;
         for (int i = 0; i < TIME; i++) {
-            int[] arr = Utils.getRandomArray(1000, 1000);
+            int[] arr = ArrayUtil.getRandomArray(1000, 1000);
             Number[] source = new Number[arr.length];
             for (int j = 0; j < source.length; j++) {
                 source[j] = new Number(arr[j]);
@@ -36,7 +36,7 @@ public class StabilityChecker {
      * 稳定性检查
      */
     private static boolean stabilityChecker(Number[] sourceArr, Number[] sortArr) {
-        for (int i = 0; i < sortArr.length;) {
+        for (int i = 0; i < sortArr.length; ) {
             Number n = sortArr[i];
             int j = i + 1;
             for (; j < sortArr.length; j++) {

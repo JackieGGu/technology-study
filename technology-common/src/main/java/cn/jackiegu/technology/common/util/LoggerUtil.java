@@ -1,17 +1,17 @@
-package cn.jackiegu.jvm.study.common;
+package cn.jackiegu.technology.common.util;
 
 /**
- * 工具类
+ * 日志工具类
  *
  * @author JackieGu
  * @date 2021/4/2
  */
-public class Utils {
+public class LoggerUtil {
 
     /**
      * 日志打印
      */
-    public static void logger(String str) {
+    public static void info(String str) {
         System.out.println("\033[94m" + str + "\033[0m");
     }
 }

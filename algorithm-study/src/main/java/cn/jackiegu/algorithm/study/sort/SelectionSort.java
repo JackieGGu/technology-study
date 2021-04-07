@@ -1,6 +1,7 @@
 package cn.jackiegu.algorithm.study.sort;
 
-import cn.jackiegu.algorithm.study.common.Utils;
+import cn.jackiegu.technology.common.util.ArrayUtil;
+import cn.jackiegu.technology.common.util.LoggerUtil;
 
 import java.math.BigDecimal;
 
@@ -14,10 +15,10 @@ import java.math.BigDecimal;
 public class SelectionSort {
 
     public static void main(String[] args) {
-        int[] arr = Utils.getRandomArray(10000);
+        int[] arr = ArrayUtil.getRandomArray(10000);
         int time = 100;
 
-        Utils.logger("普通方式");
+        LoggerUtil.info("普通方式");
         long s0 = System.currentTimeMillis();
         for (int i = 0; i < time; i++) {
             sort0(arr.clone());
@@ -26,7 +27,7 @@ public class SelectionSort {
         BigDecimal ms0 = BigDecimal.valueOf(e0 - s0);
         System.out.println("耗时(ms): " + ms0);
 
-        Utils.logger("升级方案一");
+        LoggerUtil.info("升级方案一");
         long s1 = System.currentTimeMillis();
         for (int i = 0; i < time; i++) {
             sort1(arr.clone());
@@ -37,7 +38,7 @@ public class SelectionSort {
         BigDecimal t1 = ms0.subtract(ms1).divide(ms1, 2, BigDecimal.ROUND_HALF_UP);
         System.out.println("效率提高: " + t1);
 
-        Utils.logger("升级方案二");
+        LoggerUtil.info("升级方案二");
         long s2 = System.currentTimeMillis();
         for (int i = 0; i < time; i++) {
             sort2(arr.clone());
@@ -55,7 +56,7 @@ public class SelectionSort {
             for (int j = i + 1; j < arr.length; j++) {
                 minPos = arr[j] < arr[minPos] ? j : minPos;
             }
-            Utils.swap(arr, i, minPos);
+            ArrayUtil.swap(arr, i, minPos);
         }
     }
 
@@ -67,9 +68,9 @@ public class SelectionSort {
                 minPos = arr[j] < arr[minPos] ? j : minPos;
                 maxPos = arr[j] > arr[maxPos] ? j : maxPos;
             }
-            Utils.swap(arr, i, minPos);
+            ArrayUtil.swap(arr, i, minPos);
             maxPos = maxPos == i ? minPos : maxPos;
-            Utils.swap(arr, arr.length - 1 - i, maxPos);
+            ArrayUtil.swap(arr, arr.length - 1 - i, maxPos);
         }
     }
 
@@ -91,9 +92,9 @@ public class SelectionSort {
                     maxPos = arr[j] > arr[maxPos] ? j : maxPos;
                 }
             }
-            Utils.swap(arr, i, minPos);
+            ArrayUtil.swap(arr, i, minPos);
             maxPos = maxPos == i ? minPos : maxPos;
-            Utils.swap(arr, arr.length - 1 - i, maxPos);
+            ArrayUtil.swap(arr, arr.length - 1 - i, maxPos);
         }
     }
 

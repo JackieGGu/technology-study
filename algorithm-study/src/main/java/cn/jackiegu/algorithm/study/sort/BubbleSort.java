@@ -1,6 +1,7 @@
 package cn.jackiegu.algorithm.study.sort;
 
-import cn.jackiegu.algorithm.study.common.Utils;
+import cn.jackiegu.technology.common.util.ArrayUtil;
+import cn.jackiegu.technology.common.util.LoggerUtil;
 
 import java.math.BigDecimal;
 
@@ -14,10 +15,10 @@ import java.math.BigDecimal;
 public class BubbleSort {
 
     public static void main(String[] args) {
-        int[] arr = Utils.getRandomArray(10000);
+        int[] arr = ArrayUtil.getRandomArray(10000);
         int time = 100;
 
-        Utils.logger("普通方式");
+        LoggerUtil.info("普通方式");
         long s0 = System.currentTimeMillis();
         for (int i = 0; i < time; i++) {
             sort0(arr.clone());
@@ -26,7 +27,7 @@ public class BubbleSort {
         BigDecimal ms0 = BigDecimal.valueOf(e0 - s0);
         System.out.println("耗时(ms): " + ms0);
 
-        Utils.logger("升级方案一");
+        LoggerUtil.info("升级方案一");
         long s1 = System.currentTimeMillis();
         for (int i = 0; i < time; i++) {
             sort1(arr.clone());
@@ -42,7 +43,7 @@ public class BubbleSort {
         for (int i = arr.length - 1; i > 0; i--) {
             for (int j = 0; j < i; j++) {
                 if (arr[j] > arr[j + 1]) {
-                    Utils.swap(arr, j, j + 1);
+                    ArrayUtil.swap(arr, j, j + 1);
                 }
             }
         }
@@ -54,7 +55,7 @@ public class BubbleSort {
             flag = false;
             for (int j = 0; j < arr.length - i - 1; j++) {
                 if (arr[j] > arr[j + 1]) {
-                    Utils.swap(arr, j, j + 1);
+                    ArrayUtil.swap(arr, j, j + 1);
                     flag = true;
                 }
             }

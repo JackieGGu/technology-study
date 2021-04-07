@@ -28,6 +28,7 @@ import cn.jackiegu.design.pattern.study.uml.DonaldDuck;
 import cn.jackiegu.design.pattern.study.uml.Oxygen;
 import cn.jackiegu.design.pattern.study.uml.Penguin;
 import cn.jackiegu.design.pattern.study.uml.Water;
+import cn.jackiegu.technology.common.util.LoggerUtil;
 
 import java.lang.reflect.Proxy;
 import java.util.ArrayList;
@@ -77,7 +78,7 @@ public class Main {
      */
     public static void umlTest() {
         DonaldDuck donaldDuck = new DonaldDuck();
-        logger("唐老鸭: ");
+        LoggerUtil.info("唐老鸭: ");
         System.out.println(donaldDuck.life);
         System.out.println(donaldDuck.feather);
         System.out.println(donaldDuck.hornyBeakWithoutTeeth);
@@ -89,7 +90,7 @@ public class Main {
 
         Penguin penguin = new Penguin();
         penguin.setClimate(new Climate());
-        logger("企鹅: ");
+        LoggerUtil.info("企鹅: ");
         System.out.println(penguin.life);
         System.out.println(penguin.feather);
         System.out.println(penguin.hornyBeakWithoutTeeth);
@@ -104,17 +105,17 @@ public class Main {
      * 策略模式测试
      */
     public static void strategyTest() {
-        logger("正常收费: ");
+        LoggerUtil.info("正常收费: ");
         CashStrategy cashNormal = new CashStrategy(CashStrategy.NORMAL, null);
         System.out.println(cashNormal.getActualMoney(100));
 
-        logger("打折收费: ");
+        LoggerUtil.info("打折收费: ");
         Map<String, Double> rebateMap = new HashMap<>();
         rebateMap.put(CashStrategy.REBATE_KEY, 0.98);
         CashStrategy cashRebate = new CashStrategy(CashStrategy.REBATE, rebateMap);
         System.out.println(cashRebate.getActualMoney(100));
 
-        logger("返利收费: ");
+        LoggerUtil.info("返利收费: ");
         Map<String, Double> returnMap = new HashMap<>();
         returnMap.put(CashStrategy.RETURN_CONDITION_KEY, 30.0);
         returnMap.put(CashStrategy.RETURN_VAL_KEY, 10.0);
@@ -127,12 +128,12 @@ public class Main {
      */
     public static void DipTest() {
         IDriver tom = new Driver(new Benz());
-        logger("tom: ");
+        LoggerUtil.info("tom: ");
         tom.driver();
         tom.changeCar(new Bike());
         tom.driver();
         IDriver jerry = new Driver(new Bmw());
-        logger("jerry: ");
+        LoggerUtil.info("jerry: ");
         jerry.driver();
     }
 
@@ -142,11 +143,11 @@ public class Main {
     public static void decoratorTest() {
         Human human = new Man();
         Human superMan = new SuperManDecorator(human);
-        logger("超人: ");
+        LoggerUtil.info("超人: ");
         superMan.run();
 
         Human ironMan = new IronManDecorator(superMan);
-        logger("钢铁侠: ");
+        LoggerUtil.info("钢铁侠: ");
         ironMan.run();
     }
 
@@ -171,7 +172,7 @@ public class Main {
         UserService userService = (UserService) Proxy.newProxyInstance(classLoader, interfaces, invocationHandler);
         System.out.println(userService.getClass());
         Integer result = userService.execute(8);
-        logger("返回结果: " + result);
+        LoggerUtil.info("返回结果: " + result);
     }
 
     /**
@@ -180,15 +181,15 @@ public class Main {
     public static void factoryTest() {
         IFactory undergraduateFactory = new UndergraduateFactory();
         LeiFeng tom = undergraduateFactory.createLeiFeng();
-        logger("tom: ");
+        LoggerUtil.info("tom: ");
         tom.sweep();
         LeiFeng kitty = undergraduateFactory.createLeiFeng();
-        logger("kitty: ");
+        LoggerUtil.info("kitty: ");
         kitty.cooking();
 
         IFactory volunteerFactory = new VolunteerFactory();
         LeiFeng jackie = volunteerFactory.createLeiFeng();
-        logger("jackie: ");
+        LoggerUtil.info("jackie: ");
         jackie.wash();
     }
 
@@ -200,11 +201,11 @@ public class Main {
         Student chen = ming.clone();
         chen.setName("小陈");
         Student hong = new Student("小红", 9, "女");
-        logger("小明: ");
+        LoggerUtil.info("小明: ");
         System.out.println(ming);
-        logger("小陈: ");
+        LoggerUtil.info("小陈: ");
         System.out.println(chen);
-        logger("小红: ");
+        LoggerUtil.info("小红: ");
         System.out.println(hong);
 
         List<Student> students = new ArrayList<>();
@@ -218,13 +219,9 @@ public class Main {
         List<Student> clazz33Students = clazz33.getStudents();
         clazz33Students.clear();
         clazz33Students.add(new Student("小花", 8, "女"));
-        logger("三年级2班: ");
+        LoggerUtil.info("三年级2班: ");
         System.out.println(clazz32);
-        logger("三年级3班");
+        LoggerUtil.info("三年级3班");
         System.out.println(clazz33);
-    }
-
-    private static void logger(String str) {
-        System.out.println("\033[94m" + str + "\033[0m");
     }
 }
