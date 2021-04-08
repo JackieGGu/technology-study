@@ -1,0 +1,20 @@
+package cn.jackiegu.java8.study.i;
+
+/**
+ * 测试接口B
+ *
+ * @author JackieGu
+ * @date 2021/4/8
+ */
+public interface InterfaceB {
+
+    void sayHello(String name);
+
+    default void defaultMethod() {
+        System.out.println("TestInterfaceB defaultMethod");
+    }
+
+    static void staticMethod() {
+        System.out.println("TestInterfaceB staticMethod");
+    }
+}
