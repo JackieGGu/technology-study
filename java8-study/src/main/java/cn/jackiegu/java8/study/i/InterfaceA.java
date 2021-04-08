@@ -6,7 +6,7 @@ package cn.jackiegu.java8.study.i;
  * @author JackieGu
  * @date 2021/4/8
  */
-public interface InterfaceA {
+public interface InterfaceA extends InterfaceSuper {
 
     void sayHi(String name);
 

@@ -1,0 +1,14 @@
+package cn.jackiegu.java8.study.i;
+
+/**
+ * 测试接口顶层
+ *
+ * @author JackieGu
+ * @date 2021/4/8
+ */
+public interface InterfaceSuper {
+
+    default void defaultMethod() {
+        System.out.println("InterfaceSuper defaultMethod");
+    }
+}
