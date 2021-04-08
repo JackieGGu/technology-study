@@ -56,14 +56,17 @@ public class LambdaTest {
         lambdaInterface.run();
     }
 
+    @FunctionalInterface
     interface PrintHello {
         void hello();
     }
 
+    @FunctionalInterface
     interface SayHi {
         String hi(String name);
     }
 
+    @FunctionalInterface
     interface Operation {
         Integer calculate(int x, int y);
     }
