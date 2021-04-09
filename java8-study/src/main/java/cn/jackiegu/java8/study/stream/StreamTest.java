@@ -4,6 +4,7 @@ import cn.jackiegu.technology.common.util.LoggerUtil;
 
 import java.security.SecureRandom;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -31,43 +32,74 @@ public class StreamTest {
         LoggerUtil.info("源数据");
         Arrays.stream(entities).forEach(System.out::println);
 
-        // 采用Arrays.stream(T[] array)方法创建Stream
-        // 对id大于10的进行过滤
-        // 按照date进行从小到大排序
-        // 将结果放入一个List中
-        LoggerUtil.info("处理数据1");
-        List<StreamEntity> list1 = Arrays.stream(entities)
-            .filter(item -> item.getId() < 10)
-            .sorted(StreamEntity::compare)
-            .collect(Collectors.toList());
-        list1.forEach(System.out::println);
+        // 创建Stream之数组
+        Stream<StreamEntity> stream1 = Arrays.stream(entities);
+        // 创建Stream之集合
+        List<StreamEntity> entityList = Arrays.asList(entities);
+        Stream<StreamEntity> stream2 = entityList.stream();
+        Stream<StreamEntity> stream3 = entityList.parallelStream();
+        // 创建Stream之Stream静态方法
+        Stream<StreamEntity> stream4 = Stream.of(entities);
+        Stream<Integer> stream5 = Stream.iterate(1, item -> item + 1);
+        Stream<Integer> stream6 = Stream.generate(() -> new SecureRandom().nextInt(100));
+        Stream<Integer> stream7 = Stream.empty();
 
-        // 采用Collection.stream()的默认方法创建Stream
-        // 按照id进行去重, 注意distinct去重必须要求实体类重写hashCode和equals两个方法
-        LoggerUtil.info("处理数据2");
-        List<StreamEntity> list2 = list1.stream()
+        // 中间操作
+        LoggerUtil.info("中间操作之过滤和去重");
+        stream1.filter(item -> item.getId() < 10)
             .distinct()
-            .collect(Collectors.toList());
-        list2.forEach(System.out::println);
-
-        // 采用Stream.of(T... t)方法创建Stream
-        LoggerUtil.info("处理数据3");
-        Object[] array1 = Stream.of("zs", "ls", "ww", "zl", "qq")
-            .map(item -> item.charAt(0))
-            .toArray();
-        Arrays.stream(array1).forEach(System.out::println);
-
-        // 中间操作是延迟加载的, 只有当最终操作存在的时候中间操作才会执行
-        // stream的执行实际上是每一个元素沿着链垂直移动的, 也就是说当前一个元素将执行链完成后才会开始第二个元素
-        LoggerUtil.info("中间操作的延迟加载");
-        Arrays.stream(array1)
-            .filter(item -> {
-                System.out.println("filter: " + item);
-                return true;
+            .forEach(System.out::println);
+        LoggerUtil.info("中间操作之切片");
+        stream5.limit(10)
+            .skip(5)
+            .forEach(System.out::println);
+        LoggerUtil.info("中间操作之映射");
+        stream2.map(StreamEntity::getId)
+            .filter(item -> item < 2)
+            .flatMap(item -> {
+                Integer[] arr = new Integer[item];
+                if (arr.length > 0) {
+                    arr[0] = 999;
+                }
+                return Arrays.stream(arr);
             })
             .forEach(System.out::println);
+        LoggerUtil.info("中间操作之排序");
+        stream6.limit(10)
+            .sorted()
+            .forEach(System.out::println);
+        LoggerUtil.info("中间操作之延迟加载");
+        Stream<Integer> stream8 = Stream.of(5, 1, 6, 8, 9, 4, 3, 2, 7)
+            .filter(item -> {
+                System.out.println("filter: " + item);
+                return item < 5;
+            })
+            .map(item -> {
+                System.out.println("map: " + item);
+                return item * 2;
+            })
+            .sorted((a, b) -> {
+                System.out.println("sort: " + a + " " + b);
+                return a.compareTo(b);
+            });
+        // stream8.forEach(System.out::println);
 
-
+        // 终止操作
+        LoggerUtil.info("终止操作之查找");
+        StreamEntity s1 = stream3.findAny().orElse(null);
+        System.out.println(s1);
+        LoggerUtil.info("终止操作之匹配");
+        boolean b1 = stream4.anyMatch(item -> item.getId() == 1);
+        System.out.println(b1);
+        LoggerUtil.info("终止操作之归纳");
+        Integer sum = Stream.of(5, 1, 6, 8, 9, 4, 3, 2, 7).limit(5)
+            .reduce(0, Integer::sum);
+        System.out.println(sum);
+        LoggerUtil.info("终止操作之收集");
+        List<Integer> l1 = Stream.of(5, 1, 6, 8, 9, 4, 3, 2, 7)
+            .limit(5)
+            .collect(Collectors.toCollection(ArrayList::new));
+        System.out.println(l1);
     }
 
 }
