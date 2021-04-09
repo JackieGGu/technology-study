@@ -1,0 +1,58 @@
+package cn.jackiegu.concurrent.study.future;
+
+import cn.jackiegu.technology.common.util.LoggerUtil;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
+/**
+ * Future测试类
+ *
+ * @author JackieGu
+ * @date 2021/4/9
+ */
+public class FutureTest {
+
+    public static void main(String[] args) throws Exception {
+        LoggerUtil.info("单线程池计算任务");
+        ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();
+        CalculateTask singleThreadCalculateTask = new CalculateTask(singleThreadExecutor);
+        // 单个任务
+        Future<Integer> task1 = singleThreadCalculateTask.calculate(5);
+        while (!task1.isDone()) {
+            System.out.println("task1 is running");
+            Thread.sleep(1000);
+        }
+        System.out.println("task1 result: " + task1.get());
+        // 多个任务并发
+        Future<Integer> task2 = singleThreadCalculateTask.calculate(6);
+        Future<Integer> task3 = singleThreadCalculateTask.calculate(7);
+        while (!task2.isDone() || !task3.isDone()) {
+            boolean f2 = task2.isDone();
+            boolean f3 = task3.isDone();
+            System.out.println((f2 ? "" : "task2 ") + (f3 ? "" : "task3") + " is running");
+            Thread.sleep(1000);
+        }
+        System.out.println("task2 result: " + task2.get());
+        System.out.println("task3 result: " + task3.get());
+        // 线程池关闭
+        singleThreadCalculateTask.destroy();
+
+        LoggerUtil.info("多线程池计算任务");
+        ExecutorService fixedThreadPool = Executors.newFixedThreadPool(2);
+        CalculateTask fixedThreadCalculateTask = new CalculateTask(fixedThreadPool);
+        Future<Integer> task4 = fixedThreadCalculateTask.calculate(8);
+        Future<Integer> task5 = fixedThreadCalculateTask.calculate(9);
+        while (!task4.isDone() || !task5.isDone()) {
+            boolean f4 = task4.isDone();
+            boolean f5 = task5.isDone();
+            System.out.println((f4 ? "" : "task4 ") + (f5 ? "" : "task5") + " is running");
+            Thread.sleep(1000);
+        }
+        System.out.println("task4 result: " + task4.get());
+        System.out.println("task5 result: " + task5.get());
+        // 线程池关闭
+        fixedThreadCalculateTask.destroy();
+    }
+}
