@@ -2,9 +2,12 @@ package cn.jackiegu.concurrent.study.future;
 
 import cn.jackiegu.technology.common.util.LoggerUtil;
 
+import java.security.SecureRandom;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.FutureTask;
+import java.util.concurrent.RunnableFuture;
 
 /**
  * Future测试类
@@ -15,6 +18,24 @@ import java.util.concurrent.Future;
 public class FutureTest {
 
     public static void main(String[] args) throws Exception {
+        FutureTest.doFutureTask();
+        // FutureTest.doCalculateTask();
+    }
+
+    public static void doFutureTask() throws Exception {
+        LoggerUtil.info("自创线程任务");
+        RunnableFuture<Integer> task1 = new FutureTask<>(() -> {
+            System.out.println(LoggerUtil.threadName() + " task1 is running");
+            Thread.sleep(10000);
+            return new SecureRandom().nextInt(100);
+        });
+        new Thread(task1).start();
+        System.out.println("task1 is done: " + task1.isDone());
+        System.out.println("task1 result: " + task1.get());
+    }
+
+    @SuppressWarnings("all")
+    public static void doCalculateTask() throws Exception {
         LoggerUtil.info("单线程池计算任务");
         ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();
         CalculateTask singleThreadCalculateTask = new CalculateTask(singleThreadExecutor);
