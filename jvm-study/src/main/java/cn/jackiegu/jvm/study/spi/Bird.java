@@ -10,6 +10,6 @@ public class Bird implements Animal {
 
     @Override
     public void move() {
-        System.out.println("飞");
+        System.out.println("小鸟飞");
     }
 }
