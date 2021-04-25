@@ -9,7 +9,7 @@ package cn.jackiegu.jvm.study.spi;
 public class Bird implements Animal {
 
     @Override
-    public void reproduce() {
-        System.out.println("下蛋");
+    public void move() {
+        System.out.println("飞");
     }
 }

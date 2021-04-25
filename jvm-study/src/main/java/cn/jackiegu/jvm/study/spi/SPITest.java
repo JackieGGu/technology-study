@@ -13,7 +13,7 @@ public class SPITest {
     public static void main(String[] args) {
         ServiceLoader<Animal> animals = ServiceLoader.load(Animal.class);
         for (Animal animal : animals) {
-            animal.reproduce();
+            animal.move();
         }
     }
 }

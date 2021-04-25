@@ -9,7 +9,7 @@ package cn.jackiegu.jvm.study.spi;
 public interface Animal {
 
     /**
-     * 繁殖接口
+     * 移动接口
      */
-    void reproduce();
+    void move();
 }
