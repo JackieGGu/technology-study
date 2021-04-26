@@ -17,6 +17,7 @@ public class Driver implements java.sql.Driver {
 
     static {
         try {
+            System.out.println("The custom driver is loaded");
             DriverManager.registerDriver(new Driver());
         } catch (SQLException e) {
             throw new RuntimeException("Can't register driver!");
