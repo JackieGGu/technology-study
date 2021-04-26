@@ -1,8 +1,7 @@
 package cn.jackiegu.jvm.study.spi;
 
-import cn.jackiegu.technology.common.util.LoggerUtil;
-
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.DriverPropertyInfo;
 import java.sql.SQLException;
 import java.sql.SQLFeatureNotSupportedException;
@@ -17,8 +16,11 @@ import java.util.logging.Logger;
 public class Driver implements java.sql.Driver {
 
     static {
-        LoggerUtil.info("Custom Driver");
-        System.out.println(Driver.class.getClassLoader());
+        try {
+            DriverManager.registerDriver(new Driver());
+        } catch (SQLException e) {
+            throw new RuntimeException("Can't register driver!");
+        }
     }
 
     @Override
