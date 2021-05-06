@@ -14,11 +14,8 @@ public class JavaVirtualMachineStackTest {
         JavaVirtualMachineStackTest javaVirtualMachineStackTest = new JavaVirtualMachineStackTest();
         try {
             // StackOverflowError异常测试
-            // javaVirtualMachineStackTest.overflow();
+            javaVirtualMachineStackTest.overflow();
             // javaVirtualMachineStackTest.overflow("java vm stack");
-
-            // OutOfMemoryError异常测试
-            javaVirtualMachineStackTest.outOfMemory();
         } catch (Error e) {
             System.out.println(javaVirtualMachineStackTest.number);
             System.out.println(e);
@@ -38,13 +35,5 @@ public class JavaVirtualMachineStackTest {
         }
         String newMessage = new String(chars);
         overflow(newMessage);
-    }
-
-    public void outOfMemory() {
-        int i = 1;
-        while (true) {
-            i++;
-            System.out.println(i);
-        }
     }
 }
