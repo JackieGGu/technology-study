@@ -10,6 +10,7 @@ public interface InterfaceA extends InterfaceSuper {
 
     void sayHi(String name);
 
+    @Override
     default void defaultMethod() {
         System.out.println("TestInterfaceA defaultMethod");
     }
