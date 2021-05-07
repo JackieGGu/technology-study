@@ -28,6 +28,7 @@
     <technology.common.version>${version}</technology.common.version>
     <!-- 外部依赖 -->
     <mysql.version>8.0.21</mysql.version>
+    <cglib.version>3.3.0</cglib.version>
   </properties>
 
   <dependencyManagement>
@@ -42,6 +43,12 @@
         <groupId>mysql</groupId>
         <artifactId>mysql-connector-java</artifactId>
         <version>${mysql.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>cglib</groupId>
+        <artifactId>cglib</artifactId>
+        <version>${cglib.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
