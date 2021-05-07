@@ -10,18 +10,6 @@ public class JavaVirtualMachineStackTest {
 
     private Integer number = 1;
 
-    public static void main(String[] args) {
-        JavaVirtualMachineStackTest javaVirtualMachineStackTest = new JavaVirtualMachineStackTest();
-        try {
-            // StackOverflowError异常测试
-            javaVirtualMachineStackTest.overflow();
-            // javaVirtualMachineStackTest.overflow("java vm stack");
-        } catch (Error e) {
-            System.out.println(javaVirtualMachineStackTest.number);
-            System.out.println(e);
-        }
-    }
-
     public void overflow() {
         this.number++;
         overflow();
@@ -35,5 +23,17 @@ public class JavaVirtualMachineStackTest {
         }
         String newMessage = new String(chars);
         overflow(newMessage);
+    }
+
+    public static void main(String[] args) {
+        JavaVirtualMachineStackTest javaVirtualMachineStackTest = new JavaVirtualMachineStackTest();
+        try {
+            // StackOverflowError异常测试
+            javaVirtualMachineStackTest.overflow();
+            // javaVirtualMachineStackTest.overflow("java vm stack");
+        } catch (Error e) {
+            System.out.println(javaVirtualMachineStackTest.number);
+            System.out.println(e);
+        }
     }
 }
