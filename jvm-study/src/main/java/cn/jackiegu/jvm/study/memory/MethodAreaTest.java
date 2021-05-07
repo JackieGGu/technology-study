@@ -1,7 +1,7 @@
 package cn.jackiegu.jvm.study.memory;
 
-import java.util.ArrayList;
-import java.util.List;
+import net.sf.cglib.proxy.Enhancer;
+import net.sf.cglib.proxy.MethodInterceptor;
 
 /**
  * 方法区测试
@@ -12,10 +12,23 @@ import java.util.List;
 public class MethodAreaTest {
 
     public static void main(String[] args) {
-        List<String> list = new ArrayList<>();
         int i = 0;
-        while (true) {
-            list.add(("hello method area " + i++).intern());
+        try {
+            while (true) {
+                i++;
+                Enhancer enhancer = new Enhancer();
+                enhancer.setSuperclass(OOM.class);
+                enhancer.setUseCache(false);
+                enhancer.setCallback((MethodInterceptor) (o, method, objects, methodProxy) -> methodProxy.invokeSuper(o, args));
+                enhancer.create();
+            }
+        } catch (Error e) {
+            System.out.println(i);
+            System.out.println(e);
         }
     }
+}
+
+class OOM {
+
 }
