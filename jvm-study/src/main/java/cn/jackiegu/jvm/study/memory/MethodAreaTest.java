@@ -5,6 +5,7 @@ import net.sf.cglib.proxy.MethodInterceptor;
 
 /**
  * 方法区测试
+ * VM Args: -XX:MetaspaceSize=32m -XX:MaxMetaspaceSize=32m
  *
  * @author JackieGu
  * @date 2021/5/6

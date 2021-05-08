@@ -7,6 +7,7 @@ import java.util.Random;
 
 /**
  * Java堆测试
+ * VM Args: -Xms32m -Xmx32m -XX:+HeapDumpOnOutOfMemoryError
  *
  * @author JackieGu
  * @date 2021/5/6

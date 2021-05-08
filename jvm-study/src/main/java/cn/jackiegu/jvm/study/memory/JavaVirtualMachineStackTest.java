@@ -2,6 +2,7 @@ package cn.jackiegu.jvm.study.memory;
 
 /**
  * Java虚拟机栈测试
+ * VM Args: -Xss128k
  *
  * @author JackieGu
  * @date 2021/4/30
@@ -29,8 +30,8 @@ public class JavaVirtualMachineStackTest {
         JavaVirtualMachineStackTest javaVirtualMachineStackTest = new JavaVirtualMachineStackTest();
         try {
             // StackOverflowError异常测试
-            javaVirtualMachineStackTest.overflow();
-            // javaVirtualMachineStackTest.overflow("java vm stack");
+            // javaVirtualMachineStackTest.overflow();
+            javaVirtualMachineStackTest.overflow("java vm stack");
         } catch (Error e) {
             System.out.println(javaVirtualMachineStackTest.number);
             System.out.println(e);
