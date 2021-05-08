@@ -21,8 +21,12 @@ public class StabilityChecker {
 
             // 选择排序
             // SelectionSort.stability(numbers);
+
             // 冒泡排序
-            BubbleSort.stability(numbers);
+            // BubbleSort.stability(numbers);
+
+            // 插入排序
+            InsertionSort.stability(numbers);
 
             if (!stabilityChecker(source, numbers)) {
                 result = false;

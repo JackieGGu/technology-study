@@ -18,14 +18,17 @@ public class DataChecker {
             int[] arr = source.clone();
             Arrays.sort(source);
 
-            // 选择算法
+            // 选择排序
             // SelectionSort.sort0(arr);
             // SelectionSort.sort1(arr);
             // SelectionSort.sort2(arr);
 
-            // 冒泡算法
+            // 冒泡排序
             // BubbleSort.sort0(arr);
-            BubbleSort.sort1(arr);
+            // BubbleSort.sort1(arr);
+
+            // 插入排序
+            InsertionSort.sort0(arr);
 
             if (!Arrays.equals(source, arr)) {
                 result = false;
