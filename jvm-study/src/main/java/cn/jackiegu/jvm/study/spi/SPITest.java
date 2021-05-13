@@ -22,9 +22,9 @@ public class SPITest {
         }
 
         LoggerUtil.info("JDBC—SPI实战");
-        String url = "jdbc:mysql://106.12.95.129:3306/test?useSSL=false&useUnicode=true&characterEncoding=UTF-8";
-        String username = "root";
-        String password = "1$=mysqlyuan";
+        String url = "jdbc:mysql://mysql.jackiegu.cn:3306/test?useSSL=false&useUnicode=true&characterEncoding=UTF-8";
+        String username = "test";
+        String password = "123$%^";
         Connection connection = DriverManager.getConnection(url, username, password);
         System.out.println("DriverManager ClassLoader: " + DriverManager.class.getClassLoader());
         System.out.println("Connection ClassLoader: " + Connection.class.getClassLoader());
