@@ -26,7 +26,10 @@ public class StabilityChecker {
             // BubbleSort.stability(numbers);
 
             // 插入排序
-            InsertionSort.stability(numbers);
+            // InsertionSort.stability(numbers);
+
+            // 希尔排序
+            ShellSort.stability(numbers);
 
             if (!stabilityChecker(source, numbers)) {
                 result = false;

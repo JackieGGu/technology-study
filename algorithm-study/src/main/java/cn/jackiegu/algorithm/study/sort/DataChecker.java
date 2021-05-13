@@ -28,7 +28,11 @@ public class DataChecker {
             // BubbleSort.sort1(arr);
 
             // 插入排序
-            InsertionSort.sort0(arr);
+            // InsertionSort.sort0(arr);
+
+            // 希尔排序
+            // ShellSort.sort0(arr);
+            ShellSort.sort1(arr);
 
             if (!Arrays.equals(source, arr)) {
                 result = false;
