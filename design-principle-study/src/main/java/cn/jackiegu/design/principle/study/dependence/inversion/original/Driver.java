@@ -1,4 +1,4 @@
-package cn.jackiegu.design.pattern.study.dip;
+package cn.jackiegu.design.principle.study.dependence.inversion.original;
 
 /**
  * 驾驶员类
