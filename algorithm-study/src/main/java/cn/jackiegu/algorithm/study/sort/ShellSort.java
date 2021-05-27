@@ -18,7 +18,7 @@ public class ShellSort {
         int[] arr = ArrayUtil.getRandomArray(10000);
         int time = 100;
 
-        LoggerUtil.info("希尔方式");
+        LoggerUtil.info("希尔排序(Shell方式)");
         long s0 = System.currentTimeMillis();
         for (int i = 0; i < time; i++) {
             sort0(arr.clone());
@@ -27,7 +27,7 @@ public class ShellSort {
         BigDecimal ms0 = BigDecimal.valueOf(e0 - s0);
         System.out.println("耗时(ms): " + ms0);
 
-        LoggerUtil.info("Knuth方式");
+        LoggerUtil.info("希尔排序(Knuth方式)");
         long s1 = System.currentTimeMillis();
         for (int i = 0; i < time; i++) {
             sort1(arr.clone());

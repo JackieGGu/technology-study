@@ -22,8 +22,16 @@ public class Number {
         return this.num < o.num;
     }
 
+    public boolean lessAndEquals(Number o) {
+        return this.num <= o.num;
+    }
+
     public boolean more(Number o) {
         return this.num > o.num;
+    }
+
+    public boolean moreAndEquals(Number o) {
+        return this.num >= o.num;
     }
 
     public boolean equals(Number o) {

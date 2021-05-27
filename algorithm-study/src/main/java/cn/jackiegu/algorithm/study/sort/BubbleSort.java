@@ -18,7 +18,7 @@ public class BubbleSort {
         int[] arr = ArrayUtil.getRandomArray(10000);
         int time = 100;
 
-        LoggerUtil.info("普通方式");
+        LoggerUtil.info("冒泡排序");
         long s0 = System.currentTimeMillis();
         for (int i = 0; i < time; i++) {
             sort0(arr.clone());
@@ -27,7 +27,7 @@ public class BubbleSort {
         BigDecimal ms0 = BigDecimal.valueOf(e0 - s0);
         System.out.println("耗时(ms): " + ms0);
 
-        LoggerUtil.info("升级方案一");
+        LoggerUtil.info("冒泡排序(升级方案一)");
         long s1 = System.currentTimeMillis();
         for (int i = 0; i < time; i++) {
             sort1(arr.clone());

@@ -29,7 +29,10 @@ public class StabilityChecker {
             // InsertionSort.stability(numbers);
 
             // 希尔排序
-            ShellSort.stability(numbers);
+            // ShellSort.stability(numbers);
+
+            // 归并排序
+            MergeSort.stability(numbers);
 
             if (!stabilityChecker(source, numbers)) {
                 result = false;

@@ -18,7 +18,7 @@ public class InsertionSort {
         int[] arr = ArrayUtil.getRandomArray(10000);
         int time = 100;
 
-        LoggerUtil.info("普通方式");
+        LoggerUtil.info("插入排序");
         long s0 = System.currentTimeMillis();
         for (int i = 0; i < time; i++) {
             sort0(arr.clone());

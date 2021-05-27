@@ -18,7 +18,7 @@ public class SelectionSort {
         int[] arr = ArrayUtil.getRandomArray(10000);
         int time = 100;
 
-        LoggerUtil.info("普通方式");
+        LoggerUtil.info("选择排序");
         long s0 = System.currentTimeMillis();
         for (int i = 0; i < time; i++) {
             sort0(arr.clone());
@@ -27,7 +27,7 @@ public class SelectionSort {
         BigDecimal ms0 = BigDecimal.valueOf(e0 - s0);
         System.out.println("耗时(ms): " + ms0);
 
-        LoggerUtil.info("升级方案一");
+        LoggerUtil.info("选择排序(升级方案一)");
         long s1 = System.currentTimeMillis();
         for (int i = 0; i < time; i++) {
             sort1(arr.clone());
@@ -38,7 +38,7 @@ public class SelectionSort {
         BigDecimal t1 = ms0.subtract(ms1).divide(ms1, 2, BigDecimal.ROUND_HALF_UP);
         System.out.println("效率提高: " + t1);
 
-        LoggerUtil.info("升级方案二");
+        LoggerUtil.info("选择排序(升级方案二)");
         long s2 = System.currentTimeMillis();
         for (int i = 0; i < time; i++) {
             sort2(arr.clone());

@@ -32,7 +32,10 @@ public class DataChecker {
 
             // 希尔排序
             // ShellSort.sort0(arr);
-            ShellSort.sort1(arr);
+            // ShellSort.sort1(arr);
+
+            // 归并排序
+            MergeSort.sort(arr);
 
             if (!Arrays.equals(source, arr)) {
                 result = false;
