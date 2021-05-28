@@ -9,8 +9,12 @@ package cn.jackiegu.design.pattern.study.singleton;
 public class LazySingleton3 {
 
     private LazySingleton3() {
+        System.out.println("LazySingleton3 Instancing");
     }
 
+    /**
+     * 使用私有的静态内部类, 原理与饿汉式一样, 只不过该内部类只有在getInstance()方法执行时才会被JVM加载, 所有也算是延迟加载
+     */
     public static LazySingleton3 getInstance() {
         return Instance.INSTANCE;
     }

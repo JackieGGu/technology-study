@@ -16,22 +16,33 @@ import java.util.concurrent.Future;
  */
 public class SingletonTest {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         ExecutorService threadPool = Executors.newFixedThreadPool(10);
-        LoggerUtil.info("饿汉式测试");
-        hungryTest(threadPool);
-        LoggerUtil.info("懒汉式一测试");
-        lazyTest1(threadPool);
-        LoggerUtil.info("懒汉式二测试");
-        lazyTest2(threadPool);
-        LoggerUtil.info("懒汉式三测试");
-        lazyTest3(threadPool);
-        threadPool.shutdown();
+        try {
+            LoggerUtil.info("饿汉式测试");
+            hungryTest(threadPool);
+
+            LoggerUtil.info("懒汉式一测试");
+            lazyTest1(threadPool);
+            LoggerUtil.info("懒汉式二测试");
+            lazyTest2(threadPool);
+            LoggerUtil.info("懒汉式三测试");
+            lazyTest3(threadPool);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            threadPool.shutdown();
+        }
     }
 
     public static void hungryTest(ExecutorService threadPool) throws Exception {
         List<Future<HungrySingleton>> futures = new ArrayList<>();
         for (int i = 0; i < 50; i++) {
+            /*
+             * 首次循环, 在调用HungrySingleton.getInstance()方法之前
+             * 类加载器会先对HungrySingleton类进行加载, 并完成静态变量的初始化
+             * 所以在getInstance()方法执行之前单例实例就已被创建好了
+             */
             futures.add(threadPool.submit(HungrySingleton::getInstance));
         }
         boolean isSingleton = true;
