@@ -15,10 +15,22 @@ public class HungrySingleton {
     private static final HungrySingleton instance = new HungrySingleton();
 
     private HungrySingleton() {
-        System.out.println("HungrySingleton Instancing");
+        if (instance == null) {
+            System.out.println("HungrySingleton Instancing");
+        } else {
+            // 防止反射破坏
+            throw new RuntimeException("Singleton instances are forbidden from being instantiated again");
+        }
     }
 
     public static HungrySingleton getInstance() {
+        return instance;
+    }
+
+    /**
+     * 防止序列化破坏, 但底层JVM还是创建了一个新的实例对象
+     */
+    public Object readResolve() {
         return instance;
     }
 }

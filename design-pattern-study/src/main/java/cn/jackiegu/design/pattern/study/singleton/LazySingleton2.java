@@ -11,7 +11,12 @@ public class LazySingleton2 {
     private static volatile LazySingleton2 instance;
 
     private LazySingleton2() {
-        System.out.println("LazySingleton2 Instancing");
+        if (instance == null) {
+            System.out.println("LazySingleton2 Instancing");
+        } else {
+            // 防止反射破坏
+            throw new RuntimeException("Singleton instances are forbidden from being instantiated again");
+        }
     }
 
     /**

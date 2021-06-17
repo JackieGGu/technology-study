@@ -10,6 +10,9 @@ import java.util.concurrent.Future;
 
 /**
  * 单例模式测试类
+ * 单例破坏方式:
+ *   1. 反射破坏
+ *   2. 序列化破坏
  *
  * @author JackieGu
  * @date 2021/5/27
