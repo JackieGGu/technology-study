@@ -12,6 +12,7 @@
   <modules>
     <module>algorithm-study</module>
     <module>concurrent-study</module>
+    <module>cryptology-study</module>
     <module>design-pattern-study</module>
     <module>design-principle-study</module>
     <module>io-study</module>
@@ -31,6 +32,7 @@
     <mysql.version>8.0.21</mysql.version>
     <mybatis.version>3.5.6</mybatis.version>
     <cglib.version>3.3.0</cglib.version>
+    <bouncycastle.version>1.68</bouncycastle.version>
   </properties>
 
   <dependencyManagement>
@@ -57,6 +59,12 @@
         <groupId>cglib</groupId>
         <artifactId>cglib</artifactId>
         <version>${cglib.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.bouncycastle</groupId>
+        <artifactId>bcprov-jdk15on</artifactId>
+        <version>${bouncycastle.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
