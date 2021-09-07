@@ -5,7 +5,7 @@
 
   <groupId>cn.jackiegu</groupId>
   <artifactId>technology-study</artifactId>
-  <version>1.0.0-snapshot</version>
+  <version>${revision}</version>
   <packaging>pom</packaging>
   <name>technology-study</name>
 
@@ -27,8 +27,8 @@
     <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <!-- 内部依赖 -->
-    <technology.common.version>${version}</technology.common.version>
+    <!-- 项目版本号 -->
+    <revision>1.0.0-snapshot</revision>
     <!-- 外部依赖 -->
     <mysql.version>8.0.21</mysql.version>
     <mybatis.version>3.5.6</mybatis.version>
@@ -42,7 +42,7 @@
       <dependency>
         <groupId>cn.jackiegu</groupId>
         <artifactId>technology-common</artifactId>
-        <version>${technology.common.version}</version>
+        <version>${revision}</version>
       </dependency>
 
       <dependency>
