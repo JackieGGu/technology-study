@@ -27,7 +27,7 @@
   </dependencies>
 
   <build>
-    <finalName>design-pattern-study</finalName>
+    <finalName>${artifactId}</finalName>
   </build>
 
 </project>

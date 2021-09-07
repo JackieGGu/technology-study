@@ -27,7 +27,7 @@
   </dependencies>
 
   <build>
-    <finalName>java8-study</finalName>
+    <finalName>${artifactId}</finalName>
   </build>
 
 </project>

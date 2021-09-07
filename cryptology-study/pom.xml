@@ -32,7 +32,7 @@
   </dependencies>
 
   <build>
-    <finalName>cryptology-study</finalName>
+    <finalName>${artifactId}</finalName>
   </build>
 
 </project>

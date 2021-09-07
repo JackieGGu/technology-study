@@ -27,7 +27,7 @@
   </dependencies>
 
   <build>
-    <finalName>io-study</finalName>
+    <finalName>${artifactId}</finalName>
   </build>
 
 </project>

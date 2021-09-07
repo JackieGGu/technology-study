@@ -37,7 +37,7 @@
   </dependencies>
 
   <build>
-    <finalName>jvm-study</finalName>
+    <finalName>${artifactId}</finalName>
   </build>
 
 </project>

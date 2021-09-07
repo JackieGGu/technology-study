@@ -24,7 +24,7 @@
   </dependencies>
 
   <build>
-    <finalName>technology-common</finalName>
+    <finalName>${artifactId}</finalName>
   </build>
 
 </project>

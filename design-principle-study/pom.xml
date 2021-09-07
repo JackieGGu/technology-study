@@ -37,7 +37,7 @@
   </dependencies>
 
   <build>
-    <finalName>design-principle-study</finalName>
+    <finalName>${artifactId}</finalName>
     <resources>
       <resource>
         <directory>src/main/java</directory>
