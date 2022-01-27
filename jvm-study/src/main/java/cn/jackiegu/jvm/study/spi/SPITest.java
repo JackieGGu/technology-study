@@ -22,13 +22,23 @@ public class SPITest {
         }
 
         LoggerUtil.info("JDBC—SPI实战");
-        String url = "jdbc:mysql://mysql.jackiegu.cn:3306/test?useSSL=false&useUnicode=true&characterEncoding=UTF-8";
-        String username = "test";
-        String password = "123$%^";
-        Connection connection = DriverManager.getConnection(url, username, password);
         System.out.println("DriverManager ClassLoader: " + DriverManager.class.getClassLoader());
         System.out.println("Connection ClassLoader: " + Connection.class.getClassLoader());
-        System.out.println("Connection Instance ClassLoader: " + connection.getClass().getClassLoader());
-        System.out.println("Connection Instance: " + connection);
+
+        LoggerUtil.info("MySQL Connection");
+        String mysqlUrl = "jdbc:mysql://mysql.jackiegu.cn:3306/test?useSSL=false&useUnicode=true&characterEncoding=UTF-8";
+        String mysqlUsername = "test";
+        String mysqlPassword = "123$%^";
+        Connection mysqlConnection = DriverManager.getConnection(mysqlUrl, mysqlUsername, mysqlPassword);
+        System.out.println("MySQL Connection Instance ClassLoader: " + mysqlConnection.getClass().getClassLoader());
+        System.out.println("MySQL Connection Instance: " + mysqlConnection);
+
+        LoggerUtil.info("PostgreSQL Connection");
+        String postgresqlUrl = "jdbc:postgresql://192.168.60.9:5432/sonarqube?currentSchema=public";
+        String postgresqlUsername = "postgres";
+        String postgresqlPassword = "123456";
+        Connection postgresqlConnection = DriverManager.getConnection(postgresqlUrl, postgresqlUsername, postgresqlPassword);
+        System.out.println("PostgreSQL Connection Instance ClassLoader: " + postgresqlConnection.getClass().getClassLoader());
+        System.out.println("PostgreSQL Connection Instance: " + postgresqlConnection);
     }
 }
