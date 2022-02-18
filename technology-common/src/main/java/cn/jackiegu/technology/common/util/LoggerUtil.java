@@ -1,18 +1,24 @@
 package cn.jackiegu.technology.common.util;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 日志工具类
  *
  * @author JackieGu
  * @date 2021/4/2
  */
+@Slf4j
 public class LoggerUtil {
+
+    private LoggerUtil() {
+    }
 
     /**
      * 日志打印
      */
     public static void info(String str) {
-        System.out.println("\033[94m" + str + "\033[0m");
+        log.info("\033[94m" + str + "\033[0m");
     }
 
     /**

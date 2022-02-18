@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+
+  <!-- 格式化输出
+       %d: 表示日期
+       %-5level: 表示日志级别(从左显示5个字符)
+       %logger: 表示类名
+       %line: 表示代码行数
+       %msg: 表示日志消息
+       %n: 表示换行
+   -->
+  <property name="LOG_CONSOLE_PATTERN"
+            value="%boldGreen(%d{yyyy-MM-dd HH:mm:ss SSS}) %highlight([%level]) %magenta([%thread]) %cyan(%logger{100}:%line) - %msg%n"/>
+
+  <!-- 控制台输出日志 -->
+  <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <pattern>${LOG_CONSOLE_PATTERN}</pattern>
+    </encoder>
+  </appender>
+
+  <root level="INFO">
+    <appender-ref ref="CONSOLE"/>
+  </root>
+</configuration>
