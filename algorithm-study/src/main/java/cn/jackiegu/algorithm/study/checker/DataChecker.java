@@ -1,12 +1,15 @@
-package cn.jackiegu.algorithm.study.sort;
+package cn.jackiegu.algorithm.study.checker;
 
+import cn.jackiegu.algorithm.study.sort.MergeSort;
 import cn.jackiegu.technology.common.util.ArrayUtil;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Arrays;
 
 /**
  * 对数器
  */
+@Slf4j
 public class DataChecker {
 
     private static final Integer TIME = 10000;
@@ -42,6 +45,6 @@ public class DataChecker {
                 break;
             }
         }
-        System.out.println("算法正确性: " + result);
+        log.info("算法正确性: {}", result);
     }
 }

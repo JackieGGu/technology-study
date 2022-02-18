@@ -1,4 +1,4 @@
-package cn.jackiegu.algorithm.study.sort;
+package cn.jackiegu.algorithm.study.checker;
 
 /**
  * 数字封装类
@@ -34,8 +34,26 @@ public class Number {
         return this.num >= o.num;
     }
 
-    public boolean equals(Number o) {
-        return this.num == o.num;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o instanceof Number) {
+            return this.num == ((Number) o).num;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        char[] charArr = String.valueOf(this.num).toCharArray();
+        int hash = 0;
+        for(char c : charArr) {
+            hash = hash * 131 + c;
+        }
+        return hash;
     }
 
     @Override

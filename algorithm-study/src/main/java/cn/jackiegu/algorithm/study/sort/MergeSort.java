@@ -1,7 +1,9 @@
 package cn.jackiegu.algorithm.study.sort;
 
+import cn.jackiegu.algorithm.study.checker.Number;
 import cn.jackiegu.technology.common.util.ArrayUtil;
 import cn.jackiegu.technology.common.util.LoggerUtil;
+import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;
 
@@ -12,6 +14,7 @@ import java.math.BigDecimal;
  * 空间复杂度: 1
  * 稳定性: 稳
  */
+@Slf4j
 public class MergeSort {
 
     public static void main(String[] args) {
@@ -25,7 +28,7 @@ public class MergeSort {
         }
         long e0 = System.currentTimeMillis();
         BigDecimal ms0 = BigDecimal.valueOf(e0 - s0);
-        System.out.println("耗时(ms): " + ms0);
+        log.info("耗时(ms): {}", ms0);
     }
 
     public static void sort(int[] arr) {

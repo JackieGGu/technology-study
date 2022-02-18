@@ -1,9 +1,12 @@
 package cn.jackiegu.algorithm.study.sort;
 
+import cn.jackiegu.algorithm.study.checker.Number;
 import cn.jackiegu.technology.common.util.ArrayUtil;
 import cn.jackiegu.technology.common.util.LoggerUtil;
+import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  * 选择排序
@@ -12,6 +15,7 @@ import java.math.BigDecimal;
  * 空间复杂度: 1
  * 稳定性: 不稳
  */
+@Slf4j
 public class SelectionSort {
 
     public static void main(String[] args) {
@@ -25,7 +29,7 @@ public class SelectionSort {
         }
         long e0 = System.currentTimeMillis();
         BigDecimal ms0 = BigDecimal.valueOf(e0 - s0);
-        System.out.println("耗时(ms): " + ms0);
+        log.info("耗时(ms): {}", ms0);
 
         LoggerUtil.info("选择排序(升级方案一)");
         long s1 = System.currentTimeMillis();
@@ -34,9 +38,9 @@ public class SelectionSort {
         }
         long e1 = System.currentTimeMillis();
         BigDecimal ms1 = BigDecimal.valueOf(e1 - s1);
-        System.out.println("耗时(ms): " + ms1);
-        BigDecimal t1 = ms0.subtract(ms1).divide(ms1, 2, BigDecimal.ROUND_HALF_UP);
-        System.out.println("效率提高: " + t1);
+        log.info("耗时(ms): {}", ms1);
+        BigDecimal t1 = ms0.subtract(ms1).divide(ms1, 2, RoundingMode.HALF_UP);
+        log.info("效率提高: {}", t1);
 
         LoggerUtil.info("选择排序(升级方案二)");
         long s2 = System.currentTimeMillis();
@@ -45,9 +49,9 @@ public class SelectionSort {
         }
         long e2 = System.currentTimeMillis();
         BigDecimal ms2 = BigDecimal.valueOf(e2 - s2);
-        System.out.println("耗时(ms): " + ms2);
-        BigDecimal t2 = ms0.subtract(ms2).divide(ms2, 2, BigDecimal.ROUND_HALF_UP);
-        System.out.println("效率提高: " + t2);
+        log.info("耗时(ms): {}", ms2);
+        BigDecimal t2 = ms0.subtract(ms2).divide(ms2, 2, RoundingMode.HALF_UP);
+        log.info("效率提高: {}", t2);
     }
 
     public static void sort0(int[] arr) {

@@ -1,10 +1,13 @@
-package cn.jackiegu.algorithm.study.sort;
+package cn.jackiegu.algorithm.study.checker;
 
+import cn.jackiegu.algorithm.study.sort.MergeSort;
 import cn.jackiegu.technology.common.util.ArrayUtil;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 稳定性测试器
  */
+@Slf4j
 public class StabilityChecker {
 
     private static final Integer TIME = 10000;
@@ -39,7 +42,7 @@ public class StabilityChecker {
                 break;
             }
         }
-        System.out.println("算法稳定性: " + result);
+        log.info("算法稳定性: {}", result);
     }
 
     /**
