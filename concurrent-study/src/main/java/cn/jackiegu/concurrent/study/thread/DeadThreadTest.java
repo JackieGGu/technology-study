@@ -1,6 +1,6 @@
 package cn.jackiegu.concurrent.study.thread;
 
-import cn.jackiegu.technology.common.util.LoggerUtil;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 死锁线程测试类
@@ -8,6 +8,7 @@ import cn.jackiegu.technology.common.util.LoggerUtil;
  * @author JackieGu
  * @date 2021/4/9
  */
+@Slf4j
 public class DeadThreadTest {
 
     private static final Object o1 = new Object();
@@ -18,14 +19,14 @@ public class DeadThreadTest {
         new Thread(() -> {
             synchronized (o1) {
                 try {
-                    System.out.println(LoggerUtil.threadName() + " get object1");
-                    Thread.sleep(3000);
-                    System.out.println(LoggerUtil.threadName() + " wait object2");
+                    log.info("Get object1");
+                    o1.wait(3000);
+                    log.info("Wait object2");
                     synchronized (o2) {
-                        System.out.println(LoggerUtil.threadName() + " get object2");
+                        log.info("Get object2");
                     }
                 } catch (InterruptedException ignored) {
-
+                    Thread.currentThread().interrupt();
                 }
             }
         }).start();
@@ -33,14 +34,14 @@ public class DeadThreadTest {
         new Thread(() -> {
             synchronized (o2) {
                 try {
-                    System.out.println(LoggerUtil.threadName() + " get object2");
-                    Thread.sleep(3000);
-                    System.out.println(LoggerUtil.threadName() + " wait object1");
+                    log.info("Get object2");
+                    o2.wait(3000);
+                    log.info("Wait object1");
                     synchronized (o1) {
-                        System.out.println(LoggerUtil.threadName() + " get object1");
+                        log.info("Get object1");
                     }
                 } catch (InterruptedException ignored) {
-
+                    Thread.currentThread().interrupt();
                 }
             }
         }).start();

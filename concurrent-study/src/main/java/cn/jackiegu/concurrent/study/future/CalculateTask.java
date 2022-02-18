@@ -1,6 +1,6 @@
 package cn.jackiegu.concurrent.study.future;
 
-import cn.jackiegu.technology.common.util.LoggerUtil;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
@@ -11,6 +11,7 @@ import java.util.concurrent.Future;
  * @author JackieGu
  * @date 2021/4/9
  */
+@Slf4j
 public class CalculateTask {
 
     private final ExecutorService threadExecutor;
@@ -21,7 +22,7 @@ public class CalculateTask {
 
     public Future<Integer> calculate(Integer num) {
         return threadExecutor.submit(() -> {
-            System.out.println(LoggerUtil.threadName() + " Calculate " + num + " ^ 2");
+            log.info("Calculate {} ^ 2", num);
             Thread.sleep(3000);
             return num * num;
         });

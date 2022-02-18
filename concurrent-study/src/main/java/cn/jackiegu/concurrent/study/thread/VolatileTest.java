@@ -1,5 +1,7 @@
 package cn.jackiegu.concurrent.study.thread;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -10,6 +12,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author JackieGu
  * @date 2021/4/9
  */
+@Slf4j
 public class VolatileTest {
 
     /**
@@ -17,6 +20,8 @@ public class VolatileTest {
      * 从而证明volatile关键字修饰的共享变量也不具备原子性
      */
     private volatile int num = 0;
+
+    @SuppressWarnings("all")
     public void add() {
         this.num++;
     }
@@ -68,9 +73,9 @@ public class VolatileTest {
             // 让线程由执行状态切换为就绪状态, 让出cpu时间
             Thread.yield();
         }
-        System.out.println("Number: " + test.num);
-        System.out.println("Number by synchronized: " + test.numSynchronized);
-        System.out.println("Number by lock: " + test.numLock);
-        System.out.println("Number By atomic: " + test.atomicNum.get());
+        log.info("Number: {}", test.num);
+        log.info("Number by synchronized: {}", test.numSynchronized);
+        log.info("Number by lock: {}", test.numLock);
+        log.info("Number By atomic: {}", test.atomicNum.get());
     }
 }

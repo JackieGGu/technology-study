@@ -1,6 +1,7 @@
 package cn.jackiegu.concurrent.study.thread;
 
 import cn.jackiegu.technology.common.util.LoggerUtil;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 线程测试类
@@ -21,14 +22,16 @@ public class ThreadTest {
 
 }
 
+@Slf4j
 class T1 extends Thread {
 
     @Override
     public void run() {
-        System.out.println("i am t1");
+        log.info("i am t1");
     }
 }
 
+@Slf4j
 class T2 extends Thread {
 
     Thread t1;
@@ -42,8 +45,8 @@ class T2 extends Thread {
         try {
             t1.join();
         } catch (InterruptedException ignored) {
-
+            Thread.currentThread().interrupt();
         }
-        System.out.println("i am t2");
+        log.info("i am t2");
     }
 }
