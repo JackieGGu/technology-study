@@ -5,6 +5,7 @@ import com.github.benmanes.caffeine.cache.AsyncLoadingCache;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.github.benmanes.caffeine.cache.LoadingCache;
+import lombok.extern.slf4j.Slf4j;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.security.SecureRandom;
@@ -19,7 +20,20 @@ import java.util.concurrent.TimeUnit;
  * @author JackieGu
  * @date 2021/9/7
  */
+@Slf4j
 public class CaffeineTest {
+
+    private static final String GET_USER = "Get User";
+
+    private static final String PUT_USER = "Put User";
+
+    private static final String AS_MAP = "As Map";
+
+    private static final String USER1 = "user1";
+
+    private static final String USER2 = "user2";
+
+    private static final String USER3 = "user3";
 
     public static void main(String[] args) {
         // 手动填充
@@ -41,42 +55,40 @@ public class CaffeineTest {
             .expireAfterWrite(30, TimeUnit.SECONDS)
             .build();
 
-        LoggerUtil.info("get user: ");
+        LoggerUtil.info(GET_USER);
         // 当key不存在时返回null
-        Object userValue = cache.getIfPresent("user");
-        System.out.println(userValue);
-
+        Object user1 = cache.getIfPresent(USER1);
+        log.info("user1: {}", user1);
         // 当key不存在时执行函数式接口, 并将返回值注入缓存中
-        userValue = cache.get("user", key -> new User(key.toString(), 0));
-        System.out.println(userValue);
+        Object user2 = cache.get(USER2, key -> new User(key.toString(), 0));
+        log.info("user2: {}", user2);
 
-        LoggerUtil.info("put user: ");
+        LoggerUtil.info(PUT_USER);
         User zs = new User("张三", 24);
-        cache.put("user", zs);
+        cache.put(USER3, zs);
         // 当key存在时不会执行函数式接口
-        userValue = cache.get("user", key -> new User(key.toString(), 1));
-        System.out.println(userValue);
-
+        Object user3 = cache.get(USER3, key -> new User(key.toString(), 1));
+        log.info("user3: {}", user3);
         User ls = new User("李四", 26);
-        cache.put("user", ls);
+        cache.put("user4", ls);
         // 当key存在时直接返回缓存值
-        userValue = cache.getIfPresent("user");
-        System.out.println(userValue);
+        Object user4 = cache.getIfPresent("user4");
+        log.info("user4: {}", user4);
 
-        LoggerUtil.info("as map: ");
+        LoggerUtil.info(AS_MAP);
         // 驱逐数据
-        cache.invalidate("user");
+        cache.invalidateAll();
         // 将缓存转换map
-        ConcurrentMap<@NonNull Object, @NonNull Object> cacheMap = cache.asMap();
-        System.out.println(cacheMap);
+        ConcurrentMap<@NonNull Object, @NonNull Object> map1 = cache.asMap();
+        log.info("map1: {}", map1);
 
         cache.put("a", "123");
         cache.put("b", "456");
         cache.put("c", "789");
         // Caffeine采用的惰性驱逐策略, 数据被淘汰后不会立即被驱逐, 可能是发生在下一次读/写/cleanUp函数被调用的时候才会被驱逐
         cache.cleanUp();
-        cacheMap = cache.asMap();
-        System.out.println(cacheMap);
+        ConcurrentMap<@NonNull Object, @NonNull Object> map2 = cache.asMap();
+        log.info("map2: {}", map2);
     }
 
     /**
@@ -90,24 +102,24 @@ public class CaffeineTest {
             .expireAfterAccess(30, TimeUnit.SECONDS)
             .build((String key) -> {
                 // 同步将使用主线程
-                System.out.println(LoggerUtil.threadName());
+                log.info(LoggerUtil.threadName());
                 return new User(key, 0);
             });
 
-        LoggerUtil.info("get user: ");
+        LoggerUtil.info(GET_USER);
         // 当key不存在时不会执行CacheLoader函数式接口
-        User userValue = cache.getIfPresent("user");
-        System.out.println(userValue);
+        User user1 = cache.getIfPresent(USER1);
+        log.info("user1: {}", user1);
 
         // 当key不存在时会执行CacheLoader函数式接口, 并将返回值注入缓存中
-        userValue = cache.get("user");
-        System.out.println(userValue);
+        User user2 = cache.get(USER2);
+        log.info("user2: {}", user2);
 
         User zs = new User("张三", 24);
-        cache.put("zs", zs);;
+        cache.put(USER3, zs);
         // 当key存在时不会执行CacheLoader函数式接口
-        userValue = cache.get("zs");
-        System.out.println(userValue);
+        User user3 = cache.get(USER3);
+        log.info("user3: {}", user3);
     }
 
     /**
@@ -120,40 +132,41 @@ public class CaffeineTest {
             .expireAfterAccess(30, TimeUnit.SECONDS)
             .buildAsync((String key) -> {
                 // 异步将使用线程池线程
-                System.out.println(LoggerUtil.threadName());
+                log.info(LoggerUtil.threadName());
                 // 随机进行睡眠
                 Random random = new SecureRandom();
                 int number = random.nextInt(2);
                 if (number == 1) {
                     Thread.sleep(200);
                 }
-                return new User(key, 0);
+                return new User(key, number);
             });
 
-        LoggerUtil.info("get user: ");
+        LoggerUtil.info(GET_USER);
         // 当key不存在时将返回null
-        CompletableFuture<User> userFuture = cache.getIfPresent("user");
-        System.out.println(userFuture);
+        CompletableFuture<User> user1 = cache.getIfPresent(USER1);
+        log.info("user1: {}", user1);
 
         // 当key不存在时会执行CacheLoader函数式接口, 并将返回值注入缓存中
-        userFuture = cache.get("user");
-        if (userFuture.isDone()) {
+        CompletableFuture<User> user2 = cache.get(USER2);
+        if (user2.isDone()) {
             try {
-                System.out.println("user: " + userFuture.get());
+                log.info("user2: {}", user2.get());
             } catch (Exception e) {
-                e.printStackTrace();
+                log.error("Interrupted!", e);
+                Thread.currentThread().interrupt();
             }
         } else {
-            System.out.println("done: false");
+            log.warn("the user2 is not create done");
         }
 
-        LoggerUtil.info("transform sync cache: ");
+        LoggerUtil.info("Transform Sync Cache");
         // 转为同步缓存
         LoadingCache<String, User> syncCache = cache.synchronous();
-        User user = syncCache.get("user");
-        System.out.println(user);
-        User zs = syncCache.get("zs");
-        System.out.println(zs);
+        User syncUser1 = syncCache.get(USER1);
+        log.info("syncUser1: {}", syncUser1);
+        User syncUser2 = syncCache.get(USER2);
+        log.info("syncUser2: {}", syncUser2);
     }
 
     private static class User {
