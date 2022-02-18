@@ -1,11 +1,14 @@
 package cn.jackiegu.design.pattern.study.decorator;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 超人装饰实现类
  *
  * @author JackieGu
  * @date 2020/9/23
  */
+@Slf4j
 public class SuperManDecorator extends AbstractDecorator {
 
     public SuperManDecorator(Human human) {
@@ -23,6 +26,6 @@ public class SuperManDecorator extends AbstractDecorator {
      * 装饰实现类增加的功能
      */
     private void fly() {
-        System.out.println("飞");
+        log.info("飞");
     }
 }

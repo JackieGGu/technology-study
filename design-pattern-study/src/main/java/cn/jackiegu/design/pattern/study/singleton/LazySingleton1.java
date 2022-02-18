@@ -1,18 +1,21 @@
 package cn.jackiegu.design.pattern.study.singleton;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 懒汉式一
  *
  * @author JackieGu
  * @date 2021/5/27
  */
+@Slf4j
 public class LazySingleton1 {
 
     private static LazySingleton1 instance;
 
     private LazySingleton1() {
         if (instance == null) {
-            System.out.println("LazySingleton1 Instancing");
+            log.info("LazySingleton1 Instancing");
         } else {
             // 防止反射破坏
             throw new RuntimeException("Singleton instances are forbidden from being instantiated again");
@@ -24,11 +27,13 @@ public class LazySingleton1 {
      * 若去掉synchronized关键字, 在并发情况下很容易被创建出多个实例
      * 虽然都会被最后一个实例给覆盖, 但那些被覆盖实例无疑是在浪费资源和增大GC压力
      */
-    public synchronized static LazySingleton1 getInstance() {
+    @SuppressWarnings("all")
+    public static synchronized LazySingleton1 getInstance() {
         if (instance == null) {
             try {
                 Thread.sleep(100);
             } catch (InterruptedException ignored) {
+                Thread.currentThread().interrupt();
             }
             instance = new LazySingleton1();
         }

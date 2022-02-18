@@ -1,15 +1,18 @@
 package cn.jackiegu.design.pattern.study.decorator;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 人类实现类
  *
  * @author JackieGu
  * @date 2020/9/22
  */
+@Slf4j
 public class Man implements Human {
 
     @Override
     public void run() {
-        System.out.println("学习技能");
+        log.info("学习技能");
     }
 }

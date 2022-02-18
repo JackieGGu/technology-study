@@ -1,5 +1,7 @@
 package cn.jackiegu.design.pattern.study.proxy.dynamic;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
@@ -7,9 +9,10 @@ import java.lang.reflect.Method;
  * @author JackieGu
  * @date 2020/10/11
  */
+@Slf4j
 public class DynamicProxyHandler implements InvocationHandler {
 
-    private Object object;
+    private final Object object;
 
     public DynamicProxyHandler(Object object) {
         this.object = object;
@@ -27,13 +30,13 @@ public class DynamicProxyHandler implements InvocationHandler {
      * 代理对象方法扩展
      */
     private void before() {
-        System.out.println("before...");
+        log.info("before...");
     }
 
     /**
      * 代理对象方法扩展
      */
     private void after() {
-        System.out.println("after...");
+        log.info("after...");
     }
 }

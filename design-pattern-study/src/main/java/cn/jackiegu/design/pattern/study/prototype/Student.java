@@ -52,6 +52,7 @@ public class Student implements Cloneable, Serializable {
     }
 
     @Override
+    @SuppressWarnings("all")
     public Student clone() {
         Student clone = null;
         try {

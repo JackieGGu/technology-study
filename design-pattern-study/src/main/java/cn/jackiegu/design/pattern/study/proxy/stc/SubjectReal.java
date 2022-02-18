@@ -1,15 +1,18 @@
 package cn.jackiegu.design.pattern.study.proxy.stc;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 实际对象类
  *
  * @author JackieGu
  * @date 2020/9/24
  */
+@Slf4j
 public class SubjectReal implements Subject {
 
     @Override
     public void request() {
-        System.out.println("do something...");
+        log.info("do something...");
     }
 }

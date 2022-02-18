@@ -1,16 +1,19 @@
 package cn.jackiegu.design.pattern.study.singleton;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 懒汉式三
  *
  * @author JackieGu
  * @date 2021/5/27
  */
+@Slf4j
 public class LazySingleton3 {
 
     private LazySingleton3() {
         if (Instance.INSTANCE == null) {
-            System.out.println("LazySingleton3 Instancing");
+            log.info("LazySingleton3 Instancing");
         } else {
             // 防止反射破坏
             throw new RuntimeException("Singleton instances are forbidden from being instantiated again");

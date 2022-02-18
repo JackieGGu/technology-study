@@ -1,11 +1,14 @@
 package cn.jackiegu.design.pattern.study.decorator;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 钢铁侠装饰实现类
  *
  * @author JackieGu
  * @date 2020/9/23
  */
+@Slf4j
 public class IronManDecorator extends AbstractDecorator {
 
     public IronManDecorator(Human human) {
@@ -22,6 +25,6 @@ public class IronManDecorator extends AbstractDecorator {
      * 装饰实现类增加的功能
      */
     private void beam() {
-        System.out.println("发射光束");
+        log.info("发射光束");
     }
 }

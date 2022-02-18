@@ -1,6 +1,7 @@
 package cn.jackiegu.design.pattern.study.strategy;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  * 返利收费类
@@ -32,7 +33,7 @@ public class CashReturn implements CashSuper {
      */
     @Override
     public BigDecimal acceptCash(BigDecimal money) {
-        BigDecimal divide = money.divide(this.moneyCondition, 0, BigDecimal.ROUND_DOWN);
+        BigDecimal divide = money.divide(this.moneyCondition, 0, RoundingMode.DOWN);
         return money.subtract(divide.multiply(this.moneyReturn));
     }
 }

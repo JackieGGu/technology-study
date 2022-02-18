@@ -1,6 +1,7 @@
 package cn.jackiegu.design.pattern.study.singleton;
 
 import cn.jackiegu.technology.common.util.LoggerUtil;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,10 @@ import java.util.concurrent.Future;
  * @author JackieGu
  * @date 2021/5/27
  */
+@Slf4j
 public class SingletonTest {
+
+    private static final String SINGLETON = "singleton: {}";
 
     public static void main(String[] args) {
         ExecutorService threadPool = Executors.newFixedThreadPool(10);
@@ -57,13 +61,13 @@ public class SingletonTest {
             }
             HungrySingleton nextInstance = future.get();
             if (instance != nextInstance) {
-                System.out.println(instance);
-                System.out.println(nextInstance);
+                log.info(instance.toString());
+                log.info(nextInstance.toString());
                 isSingleton = false;
                 break;
             }
         }
-        System.out.println("isSingleton: " + isSingleton);
+        log.info(SINGLETON, isSingleton);
     }
 
     public static void lazyTest1(ExecutorService threadPool) throws Exception {
@@ -80,13 +84,13 @@ public class SingletonTest {
             }
             LazySingleton1 nextInstance = future.get();
             if (instance != nextInstance) {
-                System.out.println(instance);
-                System.out.println(nextInstance);
+                log.info(instance.toString());
+                log.info(nextInstance.toString());
                 isSingleton = false;
                 break;
             }
         }
-        System.out.println("isSingleton: " + isSingleton);
+        log.info(SINGLETON, isSingleton);
     }
 
     public static void lazyTest2(ExecutorService threadPool) throws Exception {
@@ -103,13 +107,13 @@ public class SingletonTest {
             }
             LazySingleton2 nextInstance = future.get();
             if (instance != nextInstance) {
-                System.out.println(instance);
-                System.out.println(nextInstance);
+                log.info(instance.toString());
+                log.info(nextInstance.toString());
                 isSingleton = false;
                 break;
             }
         }
-        System.out.println("isSingleton: " + isSingleton);
+        log.info(SINGLETON, isSingleton);
     }
 
     public static void lazyTest3(ExecutorService threadPool) throws Exception {
@@ -126,12 +130,12 @@ public class SingletonTest {
             }
             LazySingleton3 nextInstance = future.get();
             if (instance != nextInstance) {
-                System.out.println(instance);
-                System.out.println(nextInstance);
+                log.info(instance.toString());
+                log.info(nextInstance.toString());
                 isSingleton = false;
                 break;
             }
         }
-        System.out.println("isSingleton: " + isSingleton);
+        log.info(SINGLETON, isSingleton);
     }
 }

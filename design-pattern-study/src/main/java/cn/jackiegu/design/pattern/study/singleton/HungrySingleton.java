@@ -1,11 +1,14 @@
 package cn.jackiegu.design.pattern.study.singleton;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 饿汉式
  *
  * @author JackieGu
  * @date 2021/5/27
  */
+@Slf4j
 public class HungrySingleton {
 
     /**
@@ -14,9 +17,10 @@ public class HungrySingleton {
      */
     private static final HungrySingleton instance = new HungrySingleton();
 
+    @SuppressWarnings("all")
     private HungrySingleton() {
         if (instance == null) {
-            System.out.println("HungrySingleton Instancing");
+            log.info("HungrySingleton Instancing");
         } else {
             // 防止反射破坏
             throw new RuntimeException("Singleton instances are forbidden from being instantiated again");

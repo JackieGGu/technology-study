@@ -1,14 +1,17 @@
 package cn.jackiegu.design.pattern.study.proxy.stc;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 代理对象类
  *
  * @author JackieGu
  * @date 2020/9/24
  */
+@Slf4j
 public class SubjectProxy implements Subject {
 
-    private SubjectReal object;
+    private final SubjectReal object;
 
     public SubjectProxy(SubjectReal object) {
         this.object = object;
@@ -25,13 +28,13 @@ public class SubjectProxy implements Subject {
      * 代理对象方法扩展
      */
     private void before() {
-        System.out.println("before...");
+        log.info("before...");
     }
 
     /**
      * 代理对象方法扩展
      */
     private void after() {
-        System.out.println("after...");
+        log.info("after...");
     }
 }

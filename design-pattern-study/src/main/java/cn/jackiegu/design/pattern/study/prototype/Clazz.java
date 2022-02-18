@@ -52,6 +52,7 @@ public class Clazz implements Cloneable, Serializable {
      * @return 克隆对象
      */
     @Override
+    @SuppressWarnings("all")
     public Clazz clone() {
         Clazz clone = null;
         try {

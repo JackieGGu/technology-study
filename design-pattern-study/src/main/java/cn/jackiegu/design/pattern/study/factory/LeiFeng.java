@@ -1,21 +1,24 @@
 package cn.jackiegu.design.pattern.study.factory;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 雷锋类
  *
  * @author JackieGu
  */
+@Slf4j
 public class LeiFeng {
 
     public void sweep() {
-        System.out.println("扫地");
+        log.info("扫地");
     }
 
     public void wash() {
-        System.out.println("洗衣");
+        log.info("洗衣");
     }
 
     public void cooking() {
-        System.out.println("做饭");
+        log.info("做饭");
     }
 }

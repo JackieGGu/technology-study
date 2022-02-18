@@ -11,12 +11,12 @@ public abstract class AbstractDecorator implements Human {
     /**
      * 被装饰的人类引用
      */
-    private Human human;
+    private final Human human;
 
     /**
      * 构造函数注入被装饰对象
      */
-    public AbstractDecorator(Human human) {
+    protected AbstractDecorator(Human human) {
         this.human = human;
     }
 
