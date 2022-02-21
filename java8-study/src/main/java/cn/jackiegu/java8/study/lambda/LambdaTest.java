@@ -1,41 +1,45 @@
 package cn.jackiegu.java8.study.lambda;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * lambda测试类
  *
  * @author JackieGu
  * @date 2021/4/7
  */
+@Slf4j
 public class LambdaTest {
 
+    @SuppressWarnings("all")
     private String name = "lambda";
 
     public static void main(String[] args) {
         // 没有参数, 需定义圆括号
         // 主体只有一个语句, 可省略大括号
-        PrintHello ph = () -> System.out.println("hello lambda");
+        PrintHello ph = () -> log.info("hello lambda");
         ph.hello();
 
         // 一个参数, 可省略圆括号
         // 可省略参数类型声明
         // 主体只有一个表达式语句, 将自动返回该值
         SayHi sh = name -> "hi " + name;
-        System.out.println(sh.hi("lambda"));
+        log.info(sh.hi("lambda"));
 
         // 多个参数, 需定义圆括号
         Operation oa = (x, y) -> x + y;
-        System.out.println(oa.calculate(3, 2));
+        log.info("{}", oa.calculate(3, 2));
 
         // 主体存在大括号, 需使用关键字声明返回值
         Operation os = (x, y) -> { return x - y; };
-        System.out.println(os.calculate(3, 2));
+        log.info("{}", os.calculate(3, 2));
 
         // 域外的局部变量具有隐性的final语义
         String name = "lambda";
         ph = () -> {
             // 编译报错
             // name = "lambda1";
-            System.out.println("hello " + name);
+            log.info("hello {}", name);
         };
         // 编译报错
         // name = "lambda2";
@@ -49,7 +53,7 @@ public class LambdaTest {
     public void doPrint() {
         LambdaInterface lambdaInterface = () -> {
             name = "lambda1";
-            System.out.println("hello " + name);
+            log.info("hello {}", name);
             name = "lambda2";
         };
         name = "lambda3";

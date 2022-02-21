@@ -1,5 +1,7 @@
 package cn.jackiegu.java8.study.optional;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.security.SecureRandom;
 import java.util.Optional;
 
@@ -9,17 +11,18 @@ import java.util.Optional;
  * @author JackieGu
  * @date 2021/4/9
  */
+@Slf4j
 public class OptionalTest {
 
     public static void main(String[] args) {
         Optional<String> optional1 = Optional.of("hello optional");
-        System.out.println("optional1: " + optional1);
+        log.info("optional1: {}", optional1);
         Optional<Object> optional2 = Optional.empty();
-        System.out.println("optional2: " + optional2);
+        log.info("optional2: {}", optional2);
         String s1 = new SecureRandom().nextInt(2) == 1 ? "true" : null;
         Optional<String> optional3 = Optional.ofNullable(s1);
-        System.out.println("optional3: " + optional3);
-        System.out.println("optional3 is present: " + optional3.isPresent());
-        System.out.println("optional3 value: " + optional3.orElse("false"));
+        log.info("optional3: {}", optional3);
+        log.info("optional3 is present: {}", optional3.isPresent());
+        log.info("optional3 value: {}", optional3.orElse("false"));
     }
 }

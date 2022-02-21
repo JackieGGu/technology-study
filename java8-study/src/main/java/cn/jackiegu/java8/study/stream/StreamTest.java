@@ -1,6 +1,7 @@
 package cn.jackiegu.java8.study.stream;
 
 import cn.jackiegu.technology.common.util.LoggerUtil;
+import lombok.extern.slf4j.Slf4j;
 
 import java.security.SecureRandom;
 import java.time.LocalDate;
@@ -17,6 +18,7 @@ import java.util.stream.Stream;
  * @author JackieGu
  * @date 2021/4/8
  */
+@Slf4j
 public class StreamTest {
 
     public static void main(String[] args) {
@@ -30,7 +32,7 @@ public class StreamTest {
             entities[i] = new StreamEntity(id, date);
         }
         LoggerUtil.info("源数据");
-        Arrays.stream(entities).forEach(System.out::println);
+        Arrays.stream(entities).forEach(item -> log.info(item.toString()));
 
         // 创建Stream之数组
         Stream<StreamEntity> stream1 = Arrays.stream(entities);
@@ -48,11 +50,11 @@ public class StreamTest {
         LoggerUtil.info("中间操作之过滤和去重");
         stream1.filter(item -> item.getId() < 10)
             .distinct()
-            .forEach(System.out::println);
+            .forEach(item -> log.info(item.toString()));
         LoggerUtil.info("中间操作之切片");
         stream5.limit(10)
             .skip(5)
-            .forEach(System.out::println);
+            .forEach(item -> log.info(item.toString()));
         LoggerUtil.info("中间操作之映射");
         stream2.map(StreamEntity::getId)
             .filter(item -> item < 2)
@@ -63,12 +65,13 @@ public class StreamTest {
                 }
                 return Arrays.stream(arr);
             })
-            .forEach(System.out::println);
+            .forEach(item -> log.info(item.toString()));
         LoggerUtil.info("中间操作之排序");
         stream6.limit(10)
             .sorted()
-            .forEach(System.out::println);
+            .forEach(item -> log.info(item.toString()));
         LoggerUtil.info("中间操作之延迟加载");
+        @SuppressWarnings("all")
         Stream<Integer> stream8 = Stream.of(5, 1, 6, 8, 9, 4, 3, 2, 7)
             .filter(item -> {
                 System.out.println("filter: " + item);
@@ -87,19 +90,19 @@ public class StreamTest {
         // 终止操作
         LoggerUtil.info("终止操作之查找");
         StreamEntity s1 = stream3.findAny().orElse(null);
-        System.out.println(s1);
+        log.info(s1 == null ? null : s1.toString());
         LoggerUtil.info("终止操作之匹配");
         boolean b1 = stream4.anyMatch(item -> item.getId() == 1);
-        System.out.println(b1);
+        log.info("{}", b1);
         LoggerUtil.info("终止操作之归纳");
         Integer sum = Stream.of(5, 1, 6, 8, 9, 4, 3, 2, 7).limit(5)
             .reduce(0, Integer::sum);
-        System.out.println(sum);
+        log.info("{}", sum);
         LoggerUtil.info("终止操作之收集");
         List<Integer> l1 = Stream.of(5, 1, 6, 8, 9, 4, 3, 2, 7)
             .limit(5)
             .collect(Collectors.toCollection(ArrayList::new));
-        System.out.println(l1);
+        log.info(l1.toString());
     }
 
 }

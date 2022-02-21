@@ -1,6 +1,7 @@
 package cn.jackiegu.java8.study.datetime;
 
 import cn.jackiegu.technology.common.util.LoggerUtil;
+import lombok.extern.slf4j.Slf4j;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -14,21 +15,22 @@ import java.time.format.DateTimeFormatter;
  * @author JackieGu
  * @date 2021/4/9
  */
+@Slf4j
 public class LocalDateTimeTest {
 
     public static void main(String[] args) {
         LoggerUtil.info("LocalDate、LocalTime、LocalDateTime");
         LocalDate date = LocalDate.now();
-        System.out.println(date);
+        log.info(date.toString());
         LocalTime time = LocalTime.of(16, 5, 1);
-        System.out.println(time);
+        log.info(time.toString());
         LocalDateTime dateTime = LocalDateTime.parse("2021-04-09T16:05:01");
-        System.out.println(dateTime);
+        log.info(dateTime.toString());
         LocalDateTime dateTime1 = dateTime.plusYears(1).minusMonths(4);
-        System.out.println(dateTime1.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        log.info(dateTime1.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
         LoggerUtil.info("Instant");
         Instant now = Instant.now();
-        System.out.println(now);
+        log.info(now.toString());
     }
 }

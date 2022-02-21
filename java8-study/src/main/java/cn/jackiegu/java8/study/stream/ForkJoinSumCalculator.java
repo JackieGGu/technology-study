@@ -2,6 +2,7 @@ package cn.jackiegu.java8.study.stream;
 
 import cn.jackiegu.technology.common.util.ArrayUtil;
 import cn.jackiegu.technology.common.util.LoggerUtil;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Arrays;
 import java.util.concurrent.RecursiveTask;
@@ -12,6 +13,7 @@ import java.util.concurrent.RecursiveTask;
  * @author JackieGu
  * @date 2021/4/9
  */
+@Slf4j
 public class ForkJoinSumCalculator extends RecursiveTask<Long> {
 
     // 最小阀值
@@ -19,9 +21,9 @@ public class ForkJoinSumCalculator extends RecursiveTask<Long> {
 
     private final Long[] numbers;
 
-    private final int start;
+    private final long start;
 
-    private final int end;
+    private final long end;
 
     public ForkJoinSumCalculator(Long[] numbers) {
         this(numbers, 0, numbers.length);
@@ -32,11 +34,11 @@ public class ForkJoinSumCalculator extends RecursiveTask<Long> {
             sum += number;
         }
         long e1 = System.currentTimeMillis();
-        System.out.println("time: " + (e1 - s1));
-        System.out.println("sum: " + sum);
+        log.info("time: {}", e1 - s1);
+        log.info("sum: {}", sum);
     }
 
-    public ForkJoinSumCalculator(Long[] numbers, int start, int end) {
+    public ForkJoinSumCalculator(Long[] numbers, long start, long end) {
         this.numbers = numbers;
         this.start = start;
         this.end = end;
@@ -44,7 +46,7 @@ public class ForkJoinSumCalculator extends RecursiveTask<Long> {
 
     @Override
     protected Long compute() {
-        int length = end - start;
+        long length = end - start;
         if (length <= THRESHOLD) {
             // System.out.println(start + "~" + end + ": " + Thread.currentThread().getName());
             return computeSequentially();
@@ -73,7 +75,7 @@ public class ForkJoinSumCalculator extends RecursiveTask<Long> {
         long s2 = System.currentTimeMillis();
         Long sum = calculator.compute();
         long e2 = System.currentTimeMillis();
-        System.out.println("time: " + (e2 - s2));
-        System.out.println("sum: " + sum);
+        log.info("time: {}", e2 - s2);
+        log.info("sum: {}", sum);
     }
 }

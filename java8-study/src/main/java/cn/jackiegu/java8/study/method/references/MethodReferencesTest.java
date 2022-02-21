@@ -1,6 +1,7 @@
 package cn.jackiegu.java8.study.method.references;
 
 import cn.jackiegu.technology.common.util.LoggerUtil;
+import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -14,6 +15,7 @@ import java.util.function.Supplier;
  * @author JackieGu
  * @date 2021/4/7
  */
+@Slf4j
 public class MethodReferencesTest {
 
     public static void main(String[] args) {
@@ -30,31 +32,31 @@ public class MethodReferencesTest {
         MethodReferencesEntityCompare compare = new MethodReferencesEntityCompare();
         // Arrays.sort(e1, (a, b) -> compare.compareByBirthday(a, b));
         Arrays.sort(e1, compare::compareByBirthday);
-        System.out.println(Arrays.toString(e1));
+        log.info(Arrays.toString(e1));
 
         // 类名::静态方法名
         LoggerUtil.info("类名::静态方法名");
         MethodReferencesEntity[] e2 = entities.clone();
         // Arrays.sort(e2, (a, b) -> a.getBirthday().compareTo(b.getBirthday()));
         Arrays.sort(e2, MethodReferencesEntity::compareTo);
-        System.out.println(Arrays.toString(e2));
+        log.info(Arrays.toString(e2));
 
         // 类名::实例方法名
         LoggerUtil.info("类名::实例方法名");
         // BiPredicate<MethodReferencesEntity, MethodReferencesEntity> bp = (a, b) -> a.isBirthdaySame(b);
         BiPredicate<MethodReferencesEntity, MethodReferencesEntity> bp = MethodReferencesEntity::isBirthdaySame;
-        System.out.println(bp.test(entities[1], entities[4]));
+        log.info("{}", bp.test(entities[1], entities[4]));
 
         // 类名::new
         LoggerUtil.info("类名::new");
         // Supplier<MethodReferencesEntity> supplier = () -> new MethodReferencesEntity();
         Supplier<MethodReferencesEntity> supplier = MethodReferencesEntity::new;
-        System.out.println(supplier.get());
+        log.info("{}", supplier.get());
 
         // 类型[]::new
         LoggerUtil.info("类型[]::new");
         // Function<Integer, MethodReferencesEntity[]> function = i -> new MethodReferencesEntity[i];
         Function<Integer, MethodReferencesEntity[]> function = MethodReferencesEntity[]::new;
-        System.out.println(Arrays.toString(function.apply(3)));
+        log.info(Arrays.toString(function.apply(3)));
     }
 }
