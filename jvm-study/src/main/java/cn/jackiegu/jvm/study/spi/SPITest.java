@@ -36,7 +36,7 @@ public class SPITest {
         log.info("MySQL Connection Instance: {}", mysqlConnection);
 
         LoggerUtil.info("PostgreSQL Connection");
-        String postgresqlUrl = "jdbc:postgresql://192.168.60.9:5432/sonarqube?currentSchema=public";
+        String postgresqlUrl = "jdbc:postgresql://vm009:5432/sonarqube?currentSchema=public";
         String postgresqlUsername = "postgres";
         String postgresqlPassword = "123456";
         Connection postgresqlConnection = DriverManager.getConnection(postgresqlUrl, postgresqlUsername, postgresqlPassword);
