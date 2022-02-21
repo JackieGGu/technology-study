@@ -11,6 +11,7 @@ import java.io.PipedWriter;
  */
 public class PipedTest {
 
+    @SuppressWarnings("all")
     public static void main(String[] args) throws Exception {
         PipedWriter writer = new PipedWriter();
         PipedReader reader = new PipedReader();

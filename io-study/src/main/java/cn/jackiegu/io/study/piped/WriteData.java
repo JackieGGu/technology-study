@@ -35,6 +35,7 @@ public class WriteData extends Thread {
             writer.close();
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
+            Thread.currentThread().interrupt();
         }
     }
 }
