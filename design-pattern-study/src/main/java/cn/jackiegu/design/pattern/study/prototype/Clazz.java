@@ -1,5 +1,7 @@
 package cn.jackiegu.design.pattern.study.prototype;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -14,6 +16,7 @@ import java.util.List;
  * @author JackieGu
  * @date 2020/12/11
  */
+@Slf4j
 public class Clazz implements Cloneable, Serializable {
 
     private static final long serialVersionUID = -8049504548765288240L;
@@ -79,7 +82,7 @@ public class Clazz implements Cloneable, Serializable {
             ObjectInputStream ois = new ObjectInputStream(bis);
             clone = (Clazz) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            log.error("deep clone failure", e);
         }
         return clone;
     }

@@ -36,7 +36,7 @@ public class SingletonTest {
             LoggerUtil.info("懒汉式三测试");
             lazyTest3(threadPool);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("singleton test failure", e);
         } finally {
             threadPool.shutdown();
         }

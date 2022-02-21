@@ -29,7 +29,7 @@ public class ReadData extends Thread {
                 log.info(message);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("read data failure", e);
         }
     }
 }

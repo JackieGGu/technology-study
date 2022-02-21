@@ -1,5 +1,7 @@
 package cn.jackiegu.io.study.piped;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.IOException;
 import java.io.PipedWriter;
 import java.security.SecureRandom;
@@ -12,6 +14,7 @@ import java.util.concurrent.TimeUnit;
  * @author JackieGu
  * @date 2021/4/28
  */
+@Slf4j
 public class WriteData extends Thread {
 
     private final PipedWriter writer;
@@ -34,6 +37,7 @@ public class WriteData extends Thread {
             }
             writer.close();
         } catch (IOException | InterruptedException e) {
+            log.error("write data failure", e);
             e.printStackTrace();
             Thread.currentThread().interrupt();
         }

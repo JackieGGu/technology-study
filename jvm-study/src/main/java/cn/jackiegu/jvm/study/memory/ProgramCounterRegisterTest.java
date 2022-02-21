@@ -27,7 +27,7 @@ class R0 implements Runnable {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                log.error("thread interrupted", e);
                 Thread.currentThread().interrupt();
             }
         }
@@ -43,7 +43,7 @@ class R1 implements Runnable {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                log.error("thread interrupted", e);
                 Thread.currentThread().interrupt();
             }
         }
