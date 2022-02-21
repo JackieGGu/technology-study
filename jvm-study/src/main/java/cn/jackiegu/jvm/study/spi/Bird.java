@@ -1,15 +1,18 @@
 package cn.jackiegu.jvm.study.spi;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 鸟
  *
  * @author JackieGu
  * @date 2021/4/23
  */
+@Slf4j
 public class Bird implements Animal {
 
     @Override
     public void move() {
-        System.out.println("小鸟飞");
+        log.info("小鸟飞");
     }
 }

@@ -1,5 +1,7 @@
 package cn.jackiegu.jvm.study.memory;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Java虚拟机栈测试
  * VM Args: -Xss128k
@@ -7,6 +9,7 @@ package cn.jackiegu.jvm.study.memory;
  * @author JackieGu
  * @date 2021/4/30
  */
+@Slf4j
 public class JavaVirtualMachineStackTest {
 
     private Integer number = 1;
@@ -33,8 +36,7 @@ public class JavaVirtualMachineStackTest {
             // javaVirtualMachineStackTest.overflow();
             javaVirtualMachineStackTest.overflow("java vm stack");
         } catch (Error e) {
-            System.out.println(javaVirtualMachineStackTest.number);
-            System.out.println(e);
+            log.info("number: {}", javaVirtualMachineStackTest.number, e);
         }
     }
 }

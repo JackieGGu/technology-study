@@ -1,16 +1,19 @@
 package cn.jackiegu.jvm.study.jit;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * JIT即时编译测试
  *
  * @author JackieGu
  * @date 2021/9/3
  */
+@Slf4j
 public class JITTest {
 
     public static void main(String[] args) {
         for (int i = 0; i < Integer.MAX_VALUE; i++) {
-            System.out.println("times:" + i + " , result:" + testExceptionTrunc());
+            log.info("times: {}, result: {}", i, testExceptionTrunc());
         }
     }
 

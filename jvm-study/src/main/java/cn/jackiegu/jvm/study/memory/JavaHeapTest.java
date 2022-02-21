@@ -1,5 +1,7 @@
 package cn.jackiegu.jvm.study.memory;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +14,7 @@ import java.util.Random;
  * @author JackieGu
  * @date 2021/5/6
  */
+@Slf4j
 public class JavaHeapTest {
 
     private final Integer randomNumber;
@@ -23,6 +26,7 @@ public class JavaHeapTest {
         this.randomString = String.valueOf(randomNumber);
     }
 
+    @SuppressWarnings("all")
     public static void main(String[] args) {
         Random random = new SecureRandom();
         List<JavaHeapTest> list = new ArrayList<>();
@@ -31,8 +35,7 @@ public class JavaHeapTest {
                 list.add(new JavaHeapTest(random.nextInt(99999)));
             }
         } catch (Error e) {
-            System.out.println(list.size());
-            System.out.println(e);
+            log.info("list size: {}", list.size(), e);
         }
     }
 }

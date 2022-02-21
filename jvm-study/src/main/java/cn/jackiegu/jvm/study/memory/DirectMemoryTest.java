@@ -1,9 +1,5 @@
 package cn.jackiegu.jvm.study.memory;
 
-import sun.misc.Unsafe;
-
-import java.lang.reflect.Field;
-
 /**
  * 直接内存测试
  *
@@ -12,14 +8,14 @@ import java.lang.reflect.Field;
  */
 public class DirectMemoryTest {
 
-    private static final long _1MB = 1024 * 1024;
+    // private static final long _1MB = 1024 * 1024;
 
     public static void main(String[] args) throws Exception {
-        Field field = Unsafe.class.getDeclaredFields()[0];
-        field.setAccessible(true);
-        Unsafe unsafe = (Unsafe) field.get(null);
-        while (true) {
-            unsafe.allocateMemory(_1MB);
-        }
+        // Field field = Unsafe.class.getDeclaredFields()[0];
+        // field.setAccessible(true);
+        // Unsafe unsafe = (Unsafe) field.get(null);
+        // while (true) {
+        //     unsafe.allocateMemory(_1MB);
+        // }
     }
 }

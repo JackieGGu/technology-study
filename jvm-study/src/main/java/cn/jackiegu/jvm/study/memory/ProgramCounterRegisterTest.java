@@ -1,5 +1,7 @@
 package cn.jackiegu.jvm.study.memory;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 程序计数器测试
  *
@@ -16,29 +18,33 @@ public class ProgramCounterRegisterTest {
     }
 }
 
+@Slf4j
 class R0 implements Runnable {
     @Override
     public void run() {
         for (int i = 0; i < 10; i++) {
-            System.out.println("thread0: " + i);
+            log.info("thread0: {}", i);
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
         }
     }
 }
 
+@Slf4j
 class R1 implements Runnable {
     @Override
     public void run() {
         for (int i = 0; i < 10; i++) {
-            System.out.println("thread1: " + i);
+            log.info("thread1: {}", i);
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
         }
     }

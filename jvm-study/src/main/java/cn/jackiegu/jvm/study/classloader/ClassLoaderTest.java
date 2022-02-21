@@ -1,6 +1,7 @@
 package cn.jackiegu.jvm.study.classloader;
 
 import cn.jackiegu.technology.common.util.LoggerUtil;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 类加载器测试
@@ -8,31 +9,30 @@ import cn.jackiegu.technology.common.util.LoggerUtil;
  * @author JackieGu
  * @date 2021/4/2
  */
+@Slf4j
 public class ClassLoaderTest {
 
     public static void main(String[] args) throws Exception {
         ClassLoader appClassLoader = ClassLoaderTest.class.getClassLoader();
         LoggerUtil.info("ClassLoaderTest的类加载器");
-        System.out.println(appClassLoader);
+        log.info(appClassLoader.toString());
         ClassLoader extClassLoader = appClassLoader.getParent();
         LoggerUtil.info("AppClassLoader的类加载器");
-        System.out.println(extClassLoader);
+        log.info(extClassLoader.toString());
         ClassLoader bootstrapClassLoader = extClassLoader.getParent();
         LoggerUtil.info("ExtClassLoader的类加载器");
-        System.out.println(bootstrapClassLoader);
-        System.out.println();
+        log.info(bootstrapClassLoader == null ? null : bootstrapClassLoader.toString());
 
         Class<?> dnsNameServiceClazz = Class.forName("sun.net.spi.nameservice.dns.DNSNameService");
         LoggerUtil.info("sun.net.spi.nameservice.dns.DNSNameService的类加载器");
-        System.out.println(dnsNameServiceClazz.getClassLoader());
+        log.info(dnsNameServiceClazz.getClassLoader().toString());
         Class<?> stringClazz = Class.forName("java.lang.String");
         LoggerUtil.info("java.lang.String的类加载器");
-        System.out.println(stringClazz.getClassLoader());
-        System.out.println();
+        log.info(stringClazz.getClassLoader() == null ? null : stringClazz.getClassLoader().toString());
 
         // ExtClassLoader无法加载AppClassLoaderClass
         Class<?> appClassLoaderClazz = extClassLoader.loadClass("cn.jackiegu.jvm.study.classloader.AppClassLoaderClass");
         LoggerUtil.info("cn.jackiegu.jvm.study.classloader.AppClassLoaderClass的类加载器");
-        System.out.println(appClassLoaderClazz.getClassLoader());
+        log.info(appClassLoaderClazz.getClassLoader().toString());
     }
 }

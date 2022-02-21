@@ -1,5 +1,6 @@
 package cn.jackiegu.jvm.study.memory;
 
+import lombok.extern.slf4j.Slf4j;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 
@@ -10,8 +11,10 @@ import net.sf.cglib.proxy.MethodInterceptor;
  * @author JackieGu
  * @date 2021/5/6
  */
+@Slf4j
 public class MethodAreaTest {
 
+    @SuppressWarnings("all")
     public static void main(String[] args) {
         int i = 0;
         try {
@@ -24,8 +27,7 @@ public class MethodAreaTest {
                 enhancer.create();
             }
         } catch (Error e) {
-            System.out.println(i);
-            System.out.println(e);
+            log.info("i: {}", i, e);
         }
     }
 }

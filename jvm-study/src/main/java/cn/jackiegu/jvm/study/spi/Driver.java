@@ -1,5 +1,7 @@
 package cn.jackiegu.jvm.study.spi;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.DriverPropertyInfo;
@@ -13,11 +15,12 @@ import java.util.logging.Logger;
  *
  * @author JackieGu
  */
+@Slf4j
 public class Driver implements java.sql.Driver {
 
     static {
         try {
-            System.out.println("The custom driver is loaded");
+            log.info("The custom driver is loaded");
             DriverManager.registerDriver(new Driver());
         } catch (SQLException e) {
             throw new RuntimeException("Can't register driver!");
