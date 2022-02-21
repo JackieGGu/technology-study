@@ -17,7 +17,7 @@ public class RuntimeConstantPoolTest {
     }
 
     private void minus() {
-
+        log.info("minus");
     }
 
     @SuppressWarnings("all")
