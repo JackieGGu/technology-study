@@ -12,6 +12,7 @@
   <modules>
     <module>algorithm-study</module>
     <module>cache-study</module>
+    <module>collection-study</module>
     <module>concurrent-study</module>
     <module>cryptology-study</module>
     <module>design-pattern-study</module>
@@ -19,6 +20,7 @@
     <module>io-study</module>
     <module>java8-study</module>
     <module>jvm-study</module>
+    <module>map-study</module>
     <module>technology-common</module>
   </modules>
 

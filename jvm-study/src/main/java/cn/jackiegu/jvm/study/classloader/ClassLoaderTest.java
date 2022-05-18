@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * 类加载器测试
+ * JDK1.8运行
  *
  * @author JackieGu
  * @date 2021/4/2

@@ -1,4 +1,4 @@
-package cn.jackiegu.jvm.study.spi;
+package cn.jackiegu.jvm.study.classloader.spi;
 
 import lombok.extern.slf4j.Slf4j;
 

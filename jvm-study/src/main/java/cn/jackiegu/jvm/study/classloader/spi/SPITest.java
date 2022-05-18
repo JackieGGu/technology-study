@@ -1,4 +1,4 @@
-package cn.jackiegu.jvm.study.spi;
+package cn.jackiegu.jvm.study.classloader.spi;
 
 import cn.jackiegu.technology.common.util.LoggerUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -8,7 +8,7 @@ import java.sql.DriverManager;
 import java.util.ServiceLoader;
 
 /**
- * 测试类
+ * SPI测试
  *
  * @author JackieGu
  * @date 2021/4/23

@@ -1,18 +1,18 @@
-package cn.jackiegu.jvm.study.spi;
+package cn.jackiegu.jvm.study.classloader.spi;
 
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 猫咪
+ * 鸟
  *
  * @author JackieGu
  * @date 2021/4/23
  */
 @Slf4j
-public class Cat implements Animal {
+public class Bird implements Animal {
 
     @Override
     public void move() {
-        log.info("小猫跑");
+        log.info("小鸟飞");
     }
 }
