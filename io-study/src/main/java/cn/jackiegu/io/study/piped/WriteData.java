@@ -32,7 +32,9 @@ public class WriteData extends Thread {
                 if (number == 0) {
                     break;
                 }
-                writer.write(Thread.currentThread().getName() + "@" + number);
+                String str = Thread.currentThread().getName() + "@" + number;
+                log.info(str);
+                writer.write(str);
                 TimeUnit.SECONDS.sleep(3);
             }
             writer.close();
