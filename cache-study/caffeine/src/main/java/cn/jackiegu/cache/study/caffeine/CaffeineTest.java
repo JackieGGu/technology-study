@@ -23,18 +23,6 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class CaffeineTest {
 
-    private static final String GET_USER = "Get User";
-
-    private static final String PUT_USER = "Put User";
-
-    private static final String AS_MAP = "As Map";
-
-    private static final String USER1 = "user1";
-
-    private static final String USER2 = "user2";
-
-    private static final String USER3 = "user3";
-
     public static void main(String[] args) {
         // 手动填充
         manualPopulation();
@@ -48,26 +36,26 @@ public class CaffeineTest {
      * 手动填充
      */
     public static void manualPopulation() {
-        LoggerUtil.info("========== manual population ==========");
+        LoggerUtil.info("========== 手动填充 ==========");
         Cache<Object, Object> cache = Caffeine.newBuilder()
             .maximumSize(2)
             // 当写入后经过多长时间无效
             .expireAfterWrite(30, TimeUnit.SECONDS)
             .build();
 
-        LoggerUtil.info(GET_USER);
+        LoggerUtil.info("获取缓存测试");
         // 当key不存在时返回null
-        Object user1 = cache.getIfPresent(USER1);
+        Object user1 = cache.getIfPresent("user1");
         log.info("user1: {}", user1);
         // 当key不存在时执行函数式接口, 并将返回值注入缓存中
-        Object user2 = cache.get(USER2, key -> new User(key.toString(), 0));
+        Object user2 = cache.get("user2", key -> new User(key.toString(), 0));
         log.info("user2: {}", user2);
 
-        LoggerUtil.info(PUT_USER);
+        LoggerUtil.info("存储缓存测试");
         User zs = new User("张三", 24);
-        cache.put(USER3, zs);
+        cache.put("user3", zs);
         // 当key存在时不会执行函数式接口
-        Object user3 = cache.get(USER3, key -> new User(key.toString(), 1));
+        Object user3 = cache.get("user3", key -> new User(key.toString(), 1));
         log.info("user3: {}", user3);
         User ls = new User("李四", 26);
         cache.put("user4", ls);
@@ -75,7 +63,7 @@ public class CaffeineTest {
         Object user4 = cache.getIfPresent("user4");
         log.info("user4: {}", user4);
 
-        LoggerUtil.info(AS_MAP);
+        LoggerUtil.info("转换键值对测试");
         // 驱逐数据
         cache.invalidateAll();
         // 将缓存转换map
@@ -95,7 +83,7 @@ public class CaffeineTest {
      * 同步缓存
      */
     public static void syncCache() {
-        LoggerUtil.info("========== sync population ==========");
+        LoggerUtil.info("========== 同步缓存 ==========");
         LoadingCache<String, User> cache = Caffeine.newBuilder()
             .maximumSize(2)
             // 当写入或者访问后经过多长时间无效
@@ -106,19 +94,19 @@ public class CaffeineTest {
                 return new User(key, 0);
             });
 
-        LoggerUtil.info(GET_USER);
+        LoggerUtil.info("获取缓存测试");
         // 当key不存在时不会执行CacheLoader函数式接口
-        User user1 = cache.getIfPresent(USER1);
+        User user1 = cache.getIfPresent("user1");
         log.info("user1: {}", user1);
 
         // 当key不存在时会执行CacheLoader函数式接口, 并将返回值注入缓存中
-        User user2 = cache.get(USER2);
+        User user2 = cache.get("user2");
         log.info("user2: {}", user2);
 
         User zs = new User("张三", 24);
-        cache.put(USER3, zs);
+        cache.put("user3", zs);
         // 当key存在时不会执行CacheLoader函数式接口
-        User user3 = cache.get(USER3);
+        User user3 = cache.get("user3");
         log.info("user3: {}", user3);
     }
 
@@ -126,7 +114,7 @@ public class CaffeineTest {
      * 异步缓存
      */
     public static void asyncCache() {
-        LoggerUtil.info("========== async population ==========");
+        LoggerUtil.info("========== 异步缓存 ==========");
         AsyncLoadingCache<String, User> cache = Caffeine.newBuilder()
             .maximumSize(2)
             .expireAfterAccess(30, TimeUnit.SECONDS)
@@ -142,13 +130,13 @@ public class CaffeineTest {
                 return new User(key, number);
             });
 
-        LoggerUtil.info(GET_USER);
+        LoggerUtil.info("获取缓存测试");
         // 当key不存在时将返回null
-        CompletableFuture<User> user1 = cache.getIfPresent(USER1);
+        CompletableFuture<User> user1 = cache.getIfPresent("user1");
         log.info("user1: {}", user1);
 
         // 当key不存在时会执行CacheLoader函数式接口, 并将返回值注入缓存中
-        CompletableFuture<User> user2 = cache.get(USER2);
+        CompletableFuture<User> user2 = cache.get("user2");
         if (user2.isDone()) {
             try {
                 log.info("user2: {}", user2.get());
@@ -163,9 +151,9 @@ public class CaffeineTest {
         LoggerUtil.info("Transform Sync Cache");
         // 转为同步缓存
         LoadingCache<String, User> syncCache = cache.synchronous();
-        User syncUser1 = syncCache.get(USER1);
+        User syncUser1 = syncCache.get("user1");
         log.info("syncUser1: {}", syncUser1);
-        User syncUser2 = syncCache.get(USER2);
+        User syncUser2 = syncCache.get("user1");
         log.info("syncUser2: {}", syncUser2);
     }
 
