@@ -1,4 +1,4 @@
-package cn.jackiegu.concurrent.study.thread;
+package cn.jackiegu.concurrent.study.jmm;
 
 import lombok.extern.slf4j.Slf4j;
 

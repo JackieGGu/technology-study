@@ -3,13 +3,13 @@ package cn.jackiegu.concurrent.study.thread;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 死锁线程测试类
+ * 线程死锁测试
  *
  * @author JackieGu
  * @date 2021/4/9
  */
 @Slf4j
-public class DeadThreadTest {
+public class ThreadDeadlockTest {
 
     private static final Object o1 = new Object();
 
