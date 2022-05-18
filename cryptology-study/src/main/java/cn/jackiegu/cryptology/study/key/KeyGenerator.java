@@ -1,4 +1,4 @@
-package cn.jackiegu.cryptology.study.generator;
+package cn.jackiegu.cryptology.study.key;
 
 /**
  * 密钥生成器
