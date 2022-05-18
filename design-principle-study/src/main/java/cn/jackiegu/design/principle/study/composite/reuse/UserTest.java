@@ -1,5 +1,6 @@
 package cn.jackiegu.design.principle.study.composite.reuse;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -7,6 +8,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.InputStream;
 
+@Slf4j
 public class UserTest {
 
     public static void main(String[] args) throws Exception {
@@ -16,7 +18,7 @@ public class UserTest {
         try (SqlSession session = sqlSessionFactory.openSession()) {
             UserMapper userMapper = session.getMapper(UserMapper.class);
             UserEntity entity = userMapper.selectUser(1);
-            System.out.println(entity);
+            log.info("user: {}", entity);
         }
     }
 }
