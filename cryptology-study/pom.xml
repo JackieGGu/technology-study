@@ -28,4 +28,8 @@
       <version>${bouncycastle.version}</version>
     </dependency>
   </dependencies>
+
+  <build>
+    <finalName>cryptology-${project.version}</finalName>
+  </build>
 </project>

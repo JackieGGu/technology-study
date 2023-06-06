@@ -47,4 +47,8 @@
       <version>${cglib.version}</version>
     </dependency>
   </dependencies>
+
+  <build>
+    <finalName>jvm-${project.version}</finalName>
+  </build>
 </project>
