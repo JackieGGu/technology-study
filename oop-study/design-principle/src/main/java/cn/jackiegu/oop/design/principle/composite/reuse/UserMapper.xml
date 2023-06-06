@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.jackiegu.oop.design.principle.composite.reuse.UserMapper">
+  <resultMap id="resultEntity" type="cn.jackiegu.oop.design.principle.composite.reuse.UserEntity">
+    <id property="id" column="ID"/>
+    <result property="name" column="NAME"/>
+    <result property="age" column="AGE"/>
+    <result property="sex" column="SEX"/>
+  </resultMap>
+  <select id="selectUser" resultMap="resultEntity">
+    SELECT
+        ID,
+        NAME,
+        AGE,
+        SEX
+    FROM
+        design_principle_user
+    WHERE
+        ID = #{id}
+  </select>
+</mapper>
